@@ -4,8 +4,9 @@ import './home.css'
 
 function Home() {
   return (
-    <div className='home-contain'>
-      home page
+    <div>
+      <a href="/login">Go to Login</a><br />
+      <a href="/signup">Go to Register</a>
     </div>
   )
 }
