@@ -19,10 +19,7 @@ function Register() {
     }
 
     if (!password) {
-      setError((prevError) => ({
-        ...prevError,
-        password: "Please enter your password",
-      }));
+      setError((prevError) => ({...prevError, password: "Please enter your password",}));
       hasError = true;
     } else {
       setError((prevError) => ({ ...prevError, password: "" }));
