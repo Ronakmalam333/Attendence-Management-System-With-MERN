@@ -3,8 +3,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-user-select: none;
   user-select: none;
-  overscroll-behavior: none;
+  @supports (overscroll-behavior: none) {
+    overscroll-behavior: none;
+  }
 }
 
 :root{
