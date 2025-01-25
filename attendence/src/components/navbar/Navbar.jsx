@@ -4,8 +4,8 @@ import './navbar.css'
 
 function Navbar() {
   return (
-    <div>
-      
+    <div className='nav-contain'>
+      navbar
     </div>
   )
 }

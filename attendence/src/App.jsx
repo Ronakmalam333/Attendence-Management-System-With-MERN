@@ -16,7 +16,6 @@ function App() {
         <Route path='/sign' element={<Register />} />
       </Routes>
     </Router>
-
   )
 }
 
