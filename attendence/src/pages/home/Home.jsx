@@ -4,7 +4,7 @@ import './home.css'
 
 function Home() {
   return (
-    <div>
+    <div className='home-contain'>
       home page
     </div>
   )

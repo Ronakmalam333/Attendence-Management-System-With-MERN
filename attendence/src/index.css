@@ -6,3 +6,15 @@
   user-select: none;
   overscroll-behavior: none;
 }
+
+:root{
+  --font-color: #1a1a1a;
+  --primary-color: #f2f2f2;
+  --secondary-color: #ff8635;
+}
+
+[dark-mode= "dark"]{
+  --font-color: #f2f2f2;
+  --primary-color: #1a1a1a;
+  --secondary-color: #ffe83d;
+}
