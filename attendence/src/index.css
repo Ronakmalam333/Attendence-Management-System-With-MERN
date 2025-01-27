@@ -11,9 +11,12 @@
 }
 
 :root{
-  --font-color: #1a1a1a;
+  --color: #111;
+  --color2: #00008B;
+  --color3: #444;
+  --color4: #fff;
   --primary-color: #f2f2f2;
-  --secondary-color: #ff8635;
+  --secondary-color: coral;
 }
 
 [dark-mode= "dark"]{
