@@ -54,43 +54,54 @@ function Register() {
   };
 
   return (
-    <div className='register' >
-      <h1 id="title">Register User</h1>
-      <form onSubmit={handleSubmit}>
-
-          <input
-            type='email'
-            name='email'
-            value={email}
-            placeholder='Email'
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type='text'
-            name='uid'
-            value={uid}
-            placeholder='UID'
-            onChange={(e) => setUid(e.target.value)}
-          />
-          {error.uid && <p style={{ color: "red" }}>{error.uid}</p>}
-          <input
-            type='password'
-            name='password'
-            value={password}
-            placeholder='Password'
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          {error.password && <p style={{ color: "red" }}>{error.password}</p>}
-        <button type='submit' id="register-btn">Register</button>
-      </form>
-      {formData.uid && (
-        <div className='success-message'>
-          <h3>Form Submitted Successfully</h3>
-          <p>Email: {formData.email}</p>
-          <p>UID: {formData.uid}</p>
-          <p>Password: {formData.password}</p>
-        </div>
-      )}
+    <div className="register-container">
+      <div className="register-form">
+        <h1 id="title">Create Account</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="input-group">
+            <input
+              type="email"
+              name="email"
+              value={email}
+              placeholder="Email"
+              onChange={(e) => setEmail(e.target.value)}
+              id="email-input"
+            />
+            {error.email && <p className="error-message">{error.email}</p>}
+          </div>
+          <div className="input-group">
+            <input
+              type="text"
+              name="uid"
+              value={uid}
+              placeholder="UID"
+              onChange={(e) => setUid(e.target.value)}
+              id="uid-input"
+            />
+            {error.uid && <p className="error-message">{error.uid}</p>}
+          </div>
+          <div className="input-group">
+            <input
+              type="password"
+              name="password"
+              value={password}
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+              id="password-input"
+            />
+            {error.password && <p className="error-message">{error.password}</p>}
+          </div>
+          <button type="submit" id="register-btn">Register</button>
+        </form>
+        {formData.uid && (
+          <div className="success-message">
+            <h3>Registration Successful!</h3>
+            <p>Email: {formData.email}</p>
+            <p>UID: {formData.uid}</p>
+            <p>Password: {formData.password}</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
