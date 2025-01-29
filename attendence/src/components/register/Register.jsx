@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./register.css";
 
+const logo =  "./wp8697790-cool-pc-wallpapers.jpg";
+
 function Register() {
   const [email, setEmail] = useState("");
   const [uid, setUid] = useState("");
