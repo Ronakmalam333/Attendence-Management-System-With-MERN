@@ -189,7 +189,7 @@ form .back-btn svg {
     justify-content: space-between;
 }
 
-.submit {
+.submit-container .submit {
     position: relative;
     width: 50%;
     height: 40px;
