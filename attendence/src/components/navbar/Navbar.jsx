@@ -11,10 +11,10 @@ function Navbar() {
     <div className='nav-contain'>
       <div className="logo"><h1>logo</h1></div>
       <div className="menus">
-        <div className="menu-item">menu1</div>
-        <div className="menu-item">menu1</div>
-        <div className="menu-item">menu1</div>
-        <div className="menu-item">menu1</div>
+        <div className="menu-item">Home</div>
+        <div className="menu-item">Attendance</div>
+        <div className="menu-item">classes</div>
+        <div className="menu-item">menu 2</div>
         <div className="menu-item">menu1</div>
       </div>
       <div className="other-details">
@@ -35,4 +35,4 @@ function Navbar() {
   )
 }
 
-export default Navbar
+export default Navbar;
