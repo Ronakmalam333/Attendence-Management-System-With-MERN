@@ -1,17 +1,15 @@
-
 import React from 'react'
-import './navbar.css'
 import { useNavigate } from 'react-router-dom'
+import './navbar.css'
 
 function Navbar() {
-
   const navigate = useNavigate();
 
   return (
     <div className='nav-contain'>
       <div className="logo"><h1>logo</h1></div>
       <div className="menus">
-        <div className="menu-item">Home</div>
+        <div className="menu-item" onClick={() => navigate('/home')}>Home</div>
         <div className="menu-item">Attendance</div>
         <div className="menu-item">classes</div>
         <div className="menu-item">menu 2</div>
@@ -20,7 +18,7 @@ function Navbar() {
       <div className="other-details">
         <div className="other-details-item">contacts</div>
         <div className="other-details-item">about us</div>
-        <div className="other-details-item">privacy policy</div>
+        <div className="other-details-item" onClick={() => navigate('/privacypolicy')}>privacy policy</div>
         <div className="other-details-item">help</div>
         <span className='dot'></span>
       </div>
@@ -35,4 +33,4 @@ function Navbar() {
   )
 }
 
-export default Navbar;
+export default Navbar
