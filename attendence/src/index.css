@@ -1,4 +1,9 @@
 
+html, body {
+  touch-action: manipulation;
+  -ms-touch-action: manipulation; /* For older Microsoft browsers */
+}
+
 *{
   margin: 0;
   padding: 0;
