@@ -99,22 +99,22 @@
   
   /* Contact Section Styling */
   section:last-child {
-    background: linear-gradient(135deg, #3498db, #2980b9);
-    color: #fff;
+    background: var(--secondary-color);
+    color: var(--color);
     padding: 20px;
     border-radius: 12px;
     margin-top: 30px;
   }
   
   section:last-child h2 {
-    color: #fff;
-    border-bottom: 2px solid #fff;
+    color: var(--color);
+    border-bottom: 2px solid var(--color);
   }
   
   section:last-child p {
-    color: #fff;
+    color: var(--color);
   }
   
   section:last-child strong {
-    color: #fff;
+    color: var(--color);
   }

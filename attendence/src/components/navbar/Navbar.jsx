@@ -17,7 +17,7 @@ function Navbar() {
       </div>
       <div className="other-details">
         <div className="other-details-item">contacts</div>
-        <div className="other-details-item">about us</div>
+        <div className="other-details-item" onClick={() => navigate('/aboutus')}>about us</div>
         <div className="other-details-item" onClick={() => navigate('/privacypolicy')}>privacy policy</div>
         <div className="other-details-item">help</div>
         <span className='dot'></span>
