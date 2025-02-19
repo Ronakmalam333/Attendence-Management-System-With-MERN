@@ -1,0 +1,31 @@
+.user_info {
+    display: flex;
+    width: 40vw;
+    height: 30%;
+    /* background-color: #9c9c9c; */
+    padding: 25px;
+    gap: 40px;
+}
+
+#profile_img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: rgb(179, 199, 195);
+}
+
+#user_details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.schedule {
+    width: 40vw;
+    height: 67%;
+    margin-top: 3%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: rgb(226, 235, 187);
+}
