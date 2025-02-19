@@ -2,85 +2,95 @@ import React, { useState } from "react";
 import "./register.css";
 import { useNavigate } from "react-router-dom";
 
-const logo = "./wp8697790-cool-pc-wallpapers.jpg";
-
-function Register() {
+const Register = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [uid, setUid] = useState("");
-  const [password, setPassword] = useState("");
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    uid: "",
+    role: "student",
+    password: "",
+    confirmPassword: "",
+  });
   const [error, setError] = useState({});
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    let errors = {};
     let hasError = false;
 
-    if (!email) {
-      setError((prevError) => ({
-        ...prevError,
-        email: "Please enter your Email id",
-      }));
+    if (!formData.firstName.trim()) {
+      errors.firstName = "First Name is required";
       hasError = true;
-    } else {
-      setError((prevError) => ({ ...prevError, email: "" }));
     }
-    if (!uid) {
-      setError((prevError) => ({ ...prevError, uid: "Please enter your UID" }));
+    if (!formData.lastName.trim()) {
+      errors.lastName = "Last Name is required";
       hasError = true;
-    } else {
-      const pattern = /^\d{2}[a-z]{2,5}\d{3}$/i;
-      if (!pattern.test(uid)) {
-        setError((prevError) => ({
-          ...prevError,
-          uid: "Please enter a valid UID",
-        }));
-        hasError = true;
-      } else {
-        setError((prevError) => ({ ...prevError, uid: "" }));
-      }
     }
-
-    if (!password) {
-      setError((prevError) => ({
-        ...prevError,
-        password: "Please enter your password",
-      }));
+    if (!formData.email) {
+      errors.email = "Email is required";
       hasError = true;
-    } else {
-      setError((prevError) => ({ ...prevError, password: "" }));
+    }
+    if (!formData.uid) {
+      const uidPattern = /^\d{2}[a-z]{2,5}\d{3}$/i;
+      errors.uid = !uidPattern.test(formData.uid) ? "Invalid UID" : "";
+      hasError = true;
+    }
+    if (!formData.password) {
+      errors.password = "Password is required";
+      hasError = true;
+    }
+    if (formData.password !== formData.confirmPassword) {
+      errors.confirmPassword = "Passwords do not match";
+      hasError = true;
     }
 
-    if (!hasError) {
-      setFormData({ email, uid, password });
-      console.log("Form Data Submitted:", { email, uid, password });
+    if (hasError) {
+      setError(errors);
+    } else {
+      console.log("Form Submitted:", formData);
     }
   };
 
   return (
     <div className='register-container'>
-      <button className='back-btn' onClick={() => navigate("/")}>
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            height='24px'
-            viewBox='0 -960 960 960'
-            width='24px'
-            fill='#000000'
-          >
-            <path d='m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z' />
-          </svg>
-        </button>
+      <button className='back-btn' onClick={() => navigate("/")}>Back</button>
       <div className='register-form'>
-        <h1 id='title'>Create Account</h1>
+        <h1>Create Account</h1>
         <form onSubmit={handleSubmit}>
+          <div className='input-group'>
+            <input
+              type='text'
+              name='firstName'
+              placeholder='First Name'
+              value={formData.firstName}
+              onChange={handleChange}
+            />
+            {error.firstName && <p className='error-message'>{error.firstName}</p>}
+          </div>
+          <div className='input-group'>
+            <input
+              type='text'
+              name='lastName'
+              placeholder='Last Name'
+              value={formData.lastName}
+              onChange={handleChange}
+            />
+            {error.lastName && <p className='error-message'>{error.lastName}</p>}
+          </div>
           <div className='input-group'>
             <input
               type='email'
               name='email'
-              value={email}
               placeholder='Email'
-              onChange={(e) => setEmail(e.target.value)}
-              id='email-input'
+              value={formData.email}
+              onChange={handleChange}
             />
             {error.email && <p className='error-message'>{error.email}</p>}
           </div>
@@ -88,44 +98,60 @@ function Register() {
             <input
               type='text'
               name='uid'
-              value={uid}
               placeholder='UID'
-              onChange={(e) => setUid(e.target.value)}
-              id='uid-input'
+              value={formData.uid}
+              onChange={handleChange}
             />
             {error.uid && <p className='error-message'>{error.uid}</p>}
+          </div>
+          <div className='input-group'>
+            <label>
+              <input
+                type='radio'
+                name='role'
+                value='student'
+                checked={formData.role === "student"}
+                onChange={handleChange}
+              /> Student
+            </label>
+            <label>
+              <input
+                type='radio'
+                name='role'
+                value='staff'
+                checked={formData.role === "staff"}
+                onChange={handleChange}
+              /> Staff
+            </label>
           </div>
           <div className='input-group'>
             <input
               type='password'
               name='password'
-              value={password}
               placeholder='Password'
-              onChange={(e) => setPassword(e.target.value)}
-              id='password-input'
+              value={formData.password}
+              onChange={handleChange}
             />
-            {error.password && (
-              <p className='error-message'>{error.password}</p>
+            {error.password && <p className='error-message'>{error.password}</p>}
+          </div>
+          <div className='input-group'>
+            <input
+              type='password'
+              name='confirmPassword'
+              placeholder='Confirm Password'
+              value={formData.confirmPassword}
+              onChange={handleChange}
+            />
+            {error.confirmPassword && (
+              <p className='error-message'>{error.confirmPassword}</p>
             )}
           </div>
-          <button type='submit' id='register-btn'>
-            Register
-          </button>
+          <button type='submit'>Register</button>
         </form>
-        {formData.uid && (
-          <div className='success-message'>
-            <h3>Registration Successful!</h3>
-            <p>Email: {formData.email}</p>
-            <p>UID: {formData.uid}</p>
-            <p>Password: {formData.password}</p>
-          </div>
-        )}
       </div>
-      {/*First Div Ended Here... */}
-      <div className="signup-img"></div>
     </div>
   );
-}
+};
 {
   /*
   add firstname lastname input field
