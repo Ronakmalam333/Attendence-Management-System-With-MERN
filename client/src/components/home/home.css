@@ -4,4 +4,5 @@
     padding: 20px;
     display: flex;
     justify-content: space-around;
+    animation: fadeIn 1s ease-in-out;
 }
