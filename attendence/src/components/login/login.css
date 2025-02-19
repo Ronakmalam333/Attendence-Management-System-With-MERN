@@ -13,6 +13,7 @@
 .signin-contain form {
     position: relative;
     height: 100%;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     background: var(--secondary-color);
     border-radius: 20px;
     display: flex;
@@ -35,7 +36,7 @@
 }
 
 .signin-contain p span:hover {
-    color: var(--primary-color);
+    color: var(--color3);
 }
 
 .signin-contain .signin-banner {
@@ -124,7 +125,7 @@ form .back-btn svg {
     bottom: 0;
     width: 100%;
     height: 1px;
-    background-color: var(--color3);
+    background-color: var(--color);
     transition: background-color 0.3s ease, transform 0.3s ease;
     transform-origin: left;
     transition: 1s;
@@ -139,13 +140,13 @@ form .back-btn svg {
 
 .input:hover .bottom-border {
     transition: 1s;
-    box-shadow: inset 400px 0px 0 0 white;
+    box-shadow: inset 400px 0px 0 0 blue;
 }
 
 /* Focus effect to keep the label at the top */
 .input input:focus+.bottom-border {
     transition: 1s;
-    box-shadow: inset 400px 0px 0 0 white;
+    box-shadow: inset 400px 0px 0 0 blue;
 }
 
 .input input:focus~.label {
@@ -164,7 +165,7 @@ form .back-btn svg {
 
 .input.focused .bottom-border,
 .input.focused:hover .bottom-border {
-    background-color: white;
+    background-color: blue;
     transform: scaleX(1);
 }
 
@@ -176,7 +177,7 @@ form .back-btn svg {
 }
 
 .forgot:hover {
-    color: white;
+    color: var(--color3);
 }
 
 .submit-container {
@@ -199,7 +200,7 @@ form .back-btn svg {
     overflow: hidden;
     text-transform: capitalize;
     background: #333;
-    color: white;
+    color: var(--color4);
     transition: 0.5s;
 }
 
@@ -236,7 +237,7 @@ form .back-btn svg {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: var(--color4);
     gap: 10px;
     text-transform: capitalize;
     transition: 0.5s;

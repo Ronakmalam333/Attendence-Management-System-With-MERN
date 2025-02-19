@@ -1,11 +1,14 @@
-import React from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Navbar from './components/navbar/Navbar'
-import Home from './pages/home/Home'
-import Login from './components/login/Login'
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './components/login/Login';
+import Register from './components/register/Register';
+import './App.css';
+import PrivacyPolicy from './components/privacypolicy/PrivacyPolicy';
+import Home from './components/home/Home';
+import NavbarLayout from './components/nested routing/NavbarLayout';
+import AboutUs from './components/about us/AboutUs';
 
-import Register from './components/register/Register'
+
 
 function App() {
 
@@ -13,13 +16,21 @@ function App() {
     <Router>
       <div className="container">
         <Routes>
-          <Route path='/' element={<><Navbar /><Home /></>} />
+
+          <Route element={<NavbarLayout />}>
+            <Route path='/' element={<Home />} />
+            <Route path='/home' element={<Home />} />
+            <Route path='/privacypolicy' element={<PrivacyPolicy />} />
+            <Route path='/aboutus' element={<AboutUs />} />
+          </Route>
+
           <Route path='/signup' element={<Register />} />
           <Route path='/signin' element={<Login />} />
+
         </Routes>
       </div>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

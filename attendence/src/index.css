@@ -1,4 +1,9 @@
 
+html, body {
+  touch-action: manipulation;
+  -ms-touch-action: manipulation; /* For older Microsoft browsers */
+}
+
 *{
   margin: 0;
   padding: 0;
@@ -12,11 +17,11 @@
 
 :root{
   --color: #111;
-  --color2: #00008B;
-  --color3: #444;
+  --color2: #003cd5;
+  --color3: red;
   --color4: #fff;
   --primary-color: #f2f2f2;
-  --secondary-color: coral;
+  --secondary-color: #E1F8DC;
 }
 
 [dark-mode= "dark"]{
