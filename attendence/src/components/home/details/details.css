@@ -1,15 +1,15 @@
 .user_info {
     display: flex;
     width: 40vw;
-    height: 30%;
-    /* background-color: #9c9c9c; */
-    padding: 25px;
+    height: 25%;
+    background-color: #9c9c9c;
+    padding: 0 25px;
     gap: 40px;
 }
 
 #profile_img {
-    width: 150px;
-    height: 150px;
+    width: 145px;
+    height: 145px;
     border-radius: 50%;
     background-color: rgb(179, 199, 195);
 }
@@ -21,11 +21,24 @@
 }
 
 .schedule {
+    padding: 20px;
     width: 40vw;
-    height: 67%;
+    height: 72%;
     margin-top: 3%;
     display: flex;
     flex-direction: column;
     gap: 10px;
     background-color: rgb(226, 235, 187);
+}
+
+.sub_name {
+    width: 70%;
+    /* height: 100%; */
+    background-color: #9c9c9c;
+}
+
+.attendance {
+    width: 30%;
+    height: 100%;
+    background-color: #7e7e7e;
 }
