@@ -9,8 +9,8 @@
 .register-container {
   width: 100%;
   height: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: row;
   column-gap: 20px;
   padding: 20px;
   background: var(--primary-color);
@@ -18,14 +18,20 @@
   font-weight: 300;
 }
 
+.signup-img-contain{
+  width: 70%;
+  background: red;
+}
+
 .signup {
   background-color: #ffffff;
   border-radius: 25px;
-  width: 100%;
+  width: 30%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 20px;
   align-items: center;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
   max-width: 500px;
@@ -47,15 +53,6 @@
   align-items: center;
   justify-content: center;
   gap: 30px;
-}
-
-.signup-img{
-  background: red;
-  height: 100%;
-  width: 100%;
-  max-width: 500px;
-  border-radius: 25px;
-  padding: 40px 35px;
 }
 
 .input-group {
@@ -131,24 +128,14 @@
   transform: scale(1);
 }
 
-.success-message {
-  margin-top: 20px;
-  background-color: #d1fae5;
-  padding: 20px;
-  border-radius: 8px;
-  border: 1px solid #48bb78;
-  color: #2f855a;
-  text-align: left;
+.signup .signin-btn span{
+  color: var(--color2);
+  font-size: 1.3rem;
+  cursor: pointer;
 }
 
-.success-message h3 {
-  margin: 0 0 10px;
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.success-message p {
-  font-size: 14px;
+.signin-btn span:hover{
+  color: var(--color3);
 }
 
 @media (max-width: 600px) {

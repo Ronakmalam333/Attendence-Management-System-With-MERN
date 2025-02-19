@@ -4,6 +4,9 @@ import { useForm } from "react-hook-form";
 import "./register.css";
 
 const Register = () => {
+
+  
+
   const navigate = useNavigate();
   const {
     register,
@@ -23,6 +26,11 @@ const Register = () => {
 
   return (
     <div className="register-container">
+
+      <div className="signup-img-contain">
+
+      </div>
+
       <div className="signup">
         <h1>Create Account</h1>
         <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
@@ -127,6 +135,10 @@ const Register = () => {
           </div>
           <button type="submit">Register</button>
         </form>
+        or
+        <div className="signin-btn">
+          Don't Have An Account <span>Sign In</span>
+        </div>
       </div>
     </div>
   );
