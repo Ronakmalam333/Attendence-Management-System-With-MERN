@@ -28,7 +28,7 @@ function Details() {
   }
   console.log(mon);
   return (
-    <div>
+    <div className='schedule-contain'>
       <div className='user_info'>
         <div id='profile_img'></div>
         <div id='user_details'>
@@ -55,7 +55,9 @@ function Details() {
             ))}
           </div>
 
-          <div className='attendance'></div>
+          <div className='attendance'>
+
+          </div>
         </div>
       </div>
     </div>

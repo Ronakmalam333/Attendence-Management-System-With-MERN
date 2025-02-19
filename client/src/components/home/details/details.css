@@ -1,15 +1,25 @@
-.user_info {
+
+.schedule-contain{
+    width: 45%;
     display: flex;
-    width: 40vw;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.user_info {
+    position: relative;
+    display: flex;
+    width: 100%;
     height: 25%;
-    background-color: #9c9c9c;
     padding: 0 25px;
     gap: 40px;
 }
 
 #profile_img {
-    width: 145px;
-    height: 145px;
+    width: auto;
+    height: 100%;
+    aspect-ratio: 1/1;
     border-radius: 50%;
     background-color: rgb(179, 199, 195);
 }
@@ -22,8 +32,8 @@
 
 .schedule {
     padding: 20px;
-    width: 40vw;
-    height: 72%;
+    width: 100%;
+    height: 70%;
     margin-top: 3%;
     display: flex;
     flex-direction: column;
