@@ -40,6 +40,15 @@
   align-items: center;
 }
 
+.register-form .role-input{
+  width: 70%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
 .signup-img{
   background: red;
   height: 100%;
