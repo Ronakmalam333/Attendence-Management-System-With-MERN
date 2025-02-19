@@ -126,5 +126,23 @@ function Register() {
     </div>
   );
 }
+{
+  /*
+  add firstname lastname input field
+  add radio button for staff or student
+  add confirm password field
+
+  structure
+
+  first name -- last name 
+  email
+  uid
+  *staff *student
+  password
+  confirm password
+  submit button
+  and handle all elements errors...
+  */
+}
 
 export default Register;
