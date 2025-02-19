@@ -73,7 +73,7 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    transition: 0.5s;
+    transition: 0.9s;
     background: var(--color);
     opacity: 0;
 }
@@ -85,19 +85,19 @@
 }
 
 .other-details .other-details-item:nth-child(1):hover~.dot {
-    transform: translateX(-175px);
+    transform: translateX(-195px);
 }
 
 .other-details .other-details-item:nth-child(2):hover~.dot {
-    transform: translateX(-65px);
+    transform: translateX(-66px);
 }
 
 .other-details .other-details-item:nth-child(3):hover~.dot {
-    transform: translateX(65px);
+    transform: translateX(80px);
 }
 
 .other-details .other-details-item:nth-child(4):hover~.dot {
-    transform: translateX(185px);
+    transform: translateX(210px);
 }
 
 
