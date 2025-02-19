@@ -1,7 +1,7 @@
 
 html, body {
-  touch-action: manipulation;
   -ms-touch-action: manipulation; /* For older Microsoft browsers */
+  touch-action: manipulation;
 }
 
 *{
