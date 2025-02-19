@@ -11,16 +11,17 @@ import AboutUs from './components/about us/AboutUs';
 
 
 function App() {
+
   return (
     <Router>
       <div className="container">
         <Routes>
-          
-          <Route element={<NavbarLayout/>}>
-            <Route path='/' element={<Home/>} />
-            <Route path='/home' element={<Home/>} />
-            <Route path='/privacypolicy' element={<PrivacyPolicy/>} />
-            <Route path='/aboutus' element={<AboutUs/>}/>
+
+          <Route element={<NavbarLayout />}>
+            <Route path='/' element={<Home />} />
+            <Route path='/home' element={<Home />} />
+            <Route path='/privacypolicy' element={<PrivacyPolicy />} />
+            <Route path='/aboutus' element={<AboutUs />} />
           </Route>
 
           <Route path='/signup' element={<Register />} />
