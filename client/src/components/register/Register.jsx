@@ -1,174 +1,135 @@
 import React, { useState } from "react";
-import "./register.css";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import "./register.css";
 
 const Register = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    uid: "",
-    role: "student",
-    password: "",
-    confirmPassword: "",
-  });
-  const [error, setError] = useState({});
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+  const [registerData, setRegister] = useState(null);
+
+  const onSubmit = (data) => {
+    setRegister(data);
+    console.log("Registered Data:", data);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    let errors = {};
-    let hasError = false;
-
-    if (!formData.firstName.trim()) {
-      errors.firstName = "First Name is required";
-      hasError = true;
-    }
-    if (!formData.lastName.trim()) {
-      errors.lastName = "Last Name is required";
-      hasError = true;
-    }
-    if (!formData.email) {
-      errors.email = "Email is required";
-      hasError = true;
-    }
-    if (!formData.uid) {
-      const uidPattern = /^\d{2}[a-z]{2,5}\d{3}$/i;
-      errors.uid = !uidPattern.test(formData.uid) ? "Invalid UID" : "";
-      hasError = true;
-    }
-    if (!formData.password) {
-      errors.password = "Password is required";
-      hasError = true;
-    }
-    if (formData.password !== formData.confirmPassword) {
-      errors.confirmPassword = "Passwords do not match";
-      hasError = true;
-    }
-
-    if (hasError) {
-      setError(errors);
-    } else {
-      console.log("Form Submitted:", formData);
-    }
-  };
+  const password = watch("password");
 
   return (
-    <div className='register-container'>
-      <button className='back-btn' onClick={() => navigate("/")}>Back</button>
-      <div className='register-form'>
+    <div className="register-container">
+      <div className="signup">
         <h1>Create Account</h1>
-        <form onSubmit={handleSubmit}>
-          <div className='input-group'>
+        <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
+
+          <div className="input-group">
             <input
-              type='text'
-              name='firstName'
-              placeholder='First Name'
-              value={formData.firstName}
-              onChange={handleChange}
+              {...register("firstname", { required: "First name is required" })}
+              type="text"
+              placeholder="First Name"
+              style={{border: `${errors.firstname?"2px solid red":"2px solid #ddd"}`}}
             />
-            {error.firstName && <p className='error-message'>{error.firstName}</p>}
-          </div>
-          <div className='input-group'>
+
             <input
-              type='text'
-              name='lastName'
-              placeholder='Last Name'
-              value={formData.lastName}
-              onChange={handleChange}
+              {...register("lastname", { required: "Last name is required" })}
+              type="text"
+              placeholder="Last Name"
+              style={{border: `${errors.lastname?"2px solid red":"2px solid #ddd"}`}}
             />
-            {error.lastName && <p className='error-message'>{error.lastName}</p>}
+     
           </div>
-          <div className='input-group'>
+
+          <div className="input-group">
             <input
-              type='email'
-              name='email'
-              placeholder='Email'
-              value={formData.email}
-              onChange={handleChange}
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                  message: "Invalid email address",
+                },
+              })}
+              type="email"
+              placeholder="Email"
+              style={{border: `${errors.email?"2px solid red":"2px solid #ddd"}`}}
             />
-            {error.email && <p className='error-message'>{error.email}</p>}
+            
           </div>
-          <div className='input-group'>
+
+          
+          <div className="input-group">
             <input
-              type='text'
-              name='uid'
-              placeholder='UID'
-              value={formData.uid}
-              onChange={handleChange}
+              {...register("uid", {
+                required: "UID is required",
+                minLength: {
+                  value: 6,
+                  message: "UID must be at least 6 characters",
+                },
+              })}
+              type="text"
+              placeholder="UID"
+              style={{border: `${errors.uid?"2px solid red":"2px solid #ddd"}`}}
             />
-            {error.uid && <p className='error-message'>{error.uid}</p>}
+           
           </div>
-          <div className='input-group'>
+
+          <div className="input-group">
             <label>
               <input
-                type='radio'
-                name='role'
-                value='student'
-                checked={formData.role === "student"}
-                onChange={handleChange}
-              /> Student
+                {...register("role", { required: "Please select a role" })}
+                type="radio"
+                value="student"
+              />{" "}
+              Student
             </label>
             <label>
               <input
-                type='radio'
-                name='role'
-                value='staff'
-                checked={formData.role === "staff"}
-                onChange={handleChange}
-              /> Staff
+                {...register("role", { required: "Please select a role" })}
+                type="radio"
+                value="staff"
+              />{" "}
+              Staff
             </label>
           </div>
-          <div className='input-group'>
+          
+          <div className="input-group">
             <input
-              type='password'
-              name='password'
-              placeholder='Password'
-              value={formData.password}
-              onChange={handleChange}
+              {...register("password", {
+                required: "Password is required",
+                minLength: {
+                  value: 4,
+                  message: "Password must be at least 4 characters",
+                },
+              })}
+              type="password"
+              placeholder="Password"
+              style={{border: `${errors.password || errors.confirmpassword?"2px solid red":"2px solid #ddd"}`}}
             />
-            {error.password && <p className='error-message'>{error.password}</p>}
+            
           </div>
-          <div className='input-group'>
+       
+          <div className="input-group">
             <input
-              type='password'
-              name='confirmPassword'
-              placeholder='Confirm Password'
-              value={formData.confirmPassword}
-              onChange={handleChange}
+              {...register("confirmpassword", {
+                required: "Confirm your password",
+                validate: (value) =>
+                  value === password || "Passwords do not match",
+              })}
+              type="password"
+              placeholder="Confirm Password"
+              style={{border: `${errors.confirmpassword?"2px solid red":"2px solid #ddd"}`}}
             />
-            {error.confirmPassword && (
-              <p className='error-message'>{error.confirmPassword}</p>
-            )}
+           
           </div>
-          <button type='submit'>Register</button>
+          <button type="submit">Register</button>
         </form>
       </div>
     </div>
   );
 };
-{
-  /*
-  add firstname lastname input field
-  add radio button for staff or student
-  add confirm password field
-
-  structure
-
-  first name -- last name 
-  email
-  uid
-  *staff *student
-  password
-  confirm password
-  submit button
-  and handle all elements errors...
-  */
-}
 
 export default Register;
