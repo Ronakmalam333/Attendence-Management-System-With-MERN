@@ -7,6 +7,8 @@ import PrivacyPolicy from './components/privacypolicy/PrivacyPolicy';
 import Home from './components/home/Home';
 import NavbarLayout from './components/nested routing/NavbarLayout';
 import AboutUs from './components/about us/AboutUs';
+import Attendence from './components/attendence/Attendence';
+import Help from './components/help/Help';
 
 
 
@@ -21,6 +23,8 @@ function App() {
             <Route path='/home' element={<Home />} />
             <Route path='/privacypolicy' element={<PrivacyPolicy />} />
             <Route path='/aboutus' element={<AboutUs />} />
+            <Route path='/attendence' element={<Attendence />} />
+            <Route path='/help' element={<Help />} />
           </Route>
 
           <Route path='/' element={<Login />} />

@@ -10,7 +10,7 @@ function Navbar() {
       <div className="logo"><h1>logo</h1></div>
       <div className="menus">
         <div className="menu-item" onClick={() => navigate('/home')}>Home</div>
-        <div className="menu-item">Attendance</div>
+        <div className="menu-item" onClick={() => navigate('attendence')}>Attendance</div>
         <div className="menu-item">classes</div>
         <div className="menu-item">menu 2</div>
         <div className="menu-item">menu1</div>
@@ -19,7 +19,7 @@ function Navbar() {
         <div className="other-details-item">contacts</div>
         <div className="other-details-item" onClick={() => navigate('/aboutus')}>about us</div>
         <div className="other-details-item" onClick={() => navigate('/privacypolicy')}>privacy policy</div>
-        <div className="other-details-item">help</div>
+        <div className="other-details-item" onClick={() => navigate('help')}>help</div>
         <span className='dot'></span>
       </div>
       <div className="account" onMouseEnter={() => document.querySelector('.acc-box').style.display = 'block'} onMouseLeave={() => document.querySelector('.acc-box').style.display = 'none'}>
