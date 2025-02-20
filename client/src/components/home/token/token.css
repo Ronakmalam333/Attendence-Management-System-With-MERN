@@ -54,12 +54,14 @@
 }
 
 .submit_btn{
+    background: #222;
+    color: white;
     cursor: pointer;
     transition: 0.5s;
 }
 
 .submit_btn:hover{
     transition: 0.5s;
-    box-shadow: 0 0 5px #999;
-    transform: scale(105%);
+    box-shadow: 0 0 10px #999;
+    background: #222222c2;
 }

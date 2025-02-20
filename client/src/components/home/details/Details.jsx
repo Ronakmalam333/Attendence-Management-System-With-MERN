@@ -26,7 +26,14 @@ function Details() {
       schedule = leave;
       break;
   }
-  console.log(mon);
+  
+  let scheduleLength = [];
+
+  for(let i=1; i<=schedule.length; i++){
+    scheduleLength.push(i);
+  }
+  
+  
   return (
     <div className='schedule-contain'>
       <div className='user_info'>
@@ -53,11 +60,9 @@ function Details() {
           </div>
 
           <div className='attendance'>
-            <div>pending</div>
-            <div>pending</div>
-            <div>pending</div>
-            <div>pending</div>
-            <div>pending</div>
+            {scheduleLength.map((value, index, arr) => (
+              <div key={index} style={{height: `calc(100%/${arr.length})`}}>pending</div>
+            ))}
           </div>
         </div>
       </div>
