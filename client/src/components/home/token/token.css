@@ -1,6 +1,15 @@
+.token_contain {
+    width: 45%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .token_box {
     position: relative;
-    width: 45vw;
+    width: 100%;
     height: 100%;
     padding: 25px;
     display: flex;
@@ -21,6 +30,36 @@
 }
 
 .token_input, .submit_btn {
-    width: 300px;
+    width: 50%;
     height: 50px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    border: none;
+}
+
+.token_input{
+    background: #b7cdff92;
+    outline: none;
+}
+
+.token_input:focus{
+    border: 2px solid var(--color2);
+}
+
+.token_input:focus::placeholder{
+    color: var(--color2);
+}
+
+.submit_btn{
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.submit_btn:hover{
+    transition: 0.5s;
+    box-shadow: 0 0 5px #999;
+    transform: scale(105%);
 }
