@@ -53,7 +53,11 @@ function Details() {
           </div>
 
           <div className='attendance'>
-
+            <div>pending</div>
+            <div>pending</div>
+            <div>pending</div>
+            <div>pending</div>
+            <div>pending</div>
           </div>
         </div>
       </div>

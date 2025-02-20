@@ -21,7 +21,7 @@
     height: 100%;
     aspect-ratio: 1/1;
     border-radius: 50%;
-    background-color: rgb(179, 199, 195);
+    background-color: #b7cdff92;
 }
 
 #user_details {
@@ -44,7 +44,7 @@
     margin-top: 3%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
     justify-content: center;
     gap: 10px;
 }
@@ -84,11 +84,38 @@
     height: 90%;
     border-radius: 10px;
     background: rgb(16, 0, 163);
+    box-shadow: 0 0 5px #222222a1;
     z-index: -5;
 }
 
 .attendance {
+    position: relative;
     width: 30%;
     height: 100%;
-    background-color: #7e7e7e;
+    background-color: #b7cdff92;
+    border-radius: 10px;
+}
+
+.attendance div{
+    width: 100%;
+    height: calc(100%/5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.attendance::after{
+    content: "Attendence";
+    position: absolute;
+    width: 100%;
+    height: 15%;
+    border-radius: 10px;
+    top: -18%;
+    background: #b7cdff92;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: large;
 }

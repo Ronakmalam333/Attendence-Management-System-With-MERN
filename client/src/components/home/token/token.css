@@ -1,13 +1,23 @@
 .token_box {
+    position: relative;
     width: 45vw;
     height: 100%;
-    background-color: #646464;
     padding: 25px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 50px;
+}
+
+.token_box::after{
+    content: "";
+    position: absolute;
+    width: 3px;
+    height: 100%;
+    background: #999;
+    left: 0;
+    border-radius: 20px;
 }
 
 .token_input, .submit_btn {
