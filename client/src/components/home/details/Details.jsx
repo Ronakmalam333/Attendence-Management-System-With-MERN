@@ -48,8 +48,8 @@ function Details() {
         <h2>{new Date().toDateString()}</h2>
         <div className='current-schedule'>
           <div className='subjects-contain'>
-            {schedule.map((value) => (
-              <div className='today-sub'>
+            {schedule.map((value, index) => (
+              <div key={index} className='today-sub'>
                 <div className='today-time'>
                   <div>{value.start}</div>
                   <div>{value.end}</div>
