@@ -8,7 +8,7 @@ import Home from './components/home/Home';
 import NavbarLayout from './components/nested routing/NavbarLayout';
 import AboutUs from './components/about us/AboutUs';
 import Attendence from './components/attendence/Attendence';
-import Help from './components/help/Help';
+// import Help from './components/help/Help';
 import Feedback from './components/feedback/Feedback';
 
 
