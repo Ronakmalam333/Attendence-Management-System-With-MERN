@@ -1,6 +1,7 @@
 
 .schedule-contain{
     width: 45%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,7 +13,7 @@
     display: flex;
     width: 100%;
     height: 25%;
-    padding: 0 25px;
+    padding: 15px;
     gap: 40px;
 }
 
@@ -21,7 +22,7 @@
     height: 100%;
     aspect-ratio: 1/1;
     border-radius: 50%;
-    background-color: rgb(179, 199, 195);
+    background-color: var(--secondary-color);
 }
 
 #user_details {
@@ -44,7 +45,7 @@
     margin-top: 3%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
     justify-content: center;
     gap: 10px;
 }
@@ -84,11 +85,76 @@
     height: 90%;
     border-radius: 10px;
     background: rgb(16, 0, 163);
+    box-shadow: 0 0 5px #222222a1;
     z-index: -5;
 }
 
 .attendance {
+    position: relative;
     width: 30%;
     height: 100%;
-    background-color: #7e7e7e;
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+}
+
+.attendance div{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.attendance::after{
+    content: "Status";
+    position: absolute;
+    width: 100%;
+    height: 15%;
+    border-radius: 10px;
+    top: -18%;
+    background: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: large;
+}
+
+
+/*! Extra Small Devices (Portrait Phones) */
+@media only screen and (max-width: 575px) {
+    .schedule-contain{
+        width: 100%;
+        height: auto;
+    }
+
+    .user_info {
+        flex-direction: column;
+        height: 50%;
+        align-items: center;
+        justify-content: center;
+        gap: 0px;
+    }
+
+    #profile_img {
+        width: 150px;
+        height: 150px;
+    }
+
+    #user_details {
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .schedule {
+        padding: 10px;
+        width: 100%;
+        height: 60vh;
+        margin-top: 5%;
+    }
+
+    .subjects-contain{
+        width: 70%;
+    }
 }

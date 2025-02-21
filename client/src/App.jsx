@@ -9,6 +9,7 @@ import NavbarLayout from './components/nested routing/NavbarLayout';
 import AboutUs from './components/about us/AboutUs';
 import Attendence from './components/attendence/Attendence';
 import Help from './components/help/Help';
+import Feedback from './components/feedback/Feedback';
 
 
 
@@ -24,7 +25,7 @@ function App() {
             <Route path='/privacypolicy' element={<PrivacyPolicy />} />
             <Route path='/aboutus' element={<AboutUs />} />
             <Route path='/attendence' element={<Attendence />} />
-            <Route path='/help' element={<Help />} />
+            <Route path='/feedback' element={<Feedback/>}/>
           </Route>
 
           <Route path='/' element={<Login />} />
