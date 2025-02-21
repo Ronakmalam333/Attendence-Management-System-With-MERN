@@ -3,4 +3,14 @@
     height: 100%;
     background-color: #646464;
     padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.token_input, .submit_btn {
+    width: 300px;
+    height: 50px;
 }

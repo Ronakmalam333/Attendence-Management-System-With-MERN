@@ -30,7 +30,7 @@ function Details() {
   }
   console.log(mon);
   return (
-    <div>
+    <div className='schedule-contain'>
       <div className='user_info'>
         <div id='profile_img'></div>
         <div id='user_details'>
@@ -41,18 +41,15 @@ function Details() {
       </div>
       <div className="schedule">
         <h2>{new Date().toDateString()}</h2>
-        <div style={{ display: 'flex', width: '100%', height: '100%' }}>
-
-          <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%' }}>
+        <div className='current-schedule'>
+          <div className='subjects-contain'>
             {schedule.map((value) => (
-              <div className='sub_name'>
-                <div style={{ display: 'flex', width: '100%', height: '40px' }}>
-                  <div style={{ display: 'flex', flexDirection: 'column', width: '40%' }}>
-                    <div style={{ height: '50%', backgroundColor: 'yellow' }}>{value.start}</div>
-                    <div style={{ height: '50%', backgroundColor: 'skyblue' }}>{value.end}</div>
-                  </div>
-                  <div style={{ height: '100%', width: '60%', backgroundColor: 'pink' }}>{value.sub}</div>
+              <div className='today-sub'>
+                <div className='today-time'>
+                  <div>{value.start}</div>
+                  <div>{value.end}</div>
                 </div>
+                <div className='sub-name'>{value.sub}</div>
               </div>
             ))}
           </div>
