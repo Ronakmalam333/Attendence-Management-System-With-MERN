@@ -55,7 +55,7 @@ function Navbar() {
           }}
         ></span>
       </div>
-      <div className='account'>
+      <div className='account' onClick={() => navigate("/profile")}>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           height='45px'

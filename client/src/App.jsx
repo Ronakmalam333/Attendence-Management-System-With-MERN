@@ -8,8 +8,9 @@ import Home from './components/home/Home';
 import NavbarLayout from './components/nested routing/NavbarLayout';
 import AboutUs from './components/about us/AboutUs';
 import Attendence from './components/attendence/Attendence';
-// import Help from './components/help/Help';
 import Feedback from './components/feedback/Feedback';
+import Profile from './components/profile/Profile';
+// import Help from './components/help/Help';
 
 
 
@@ -26,6 +27,7 @@ function App() {
             <Route path='/aboutus' element={<AboutUs />} />
             <Route path='/attendence' element={<Attendence />} />
             <Route path='/feedback' element={<Feedback/>}/>
+            <Route path='/profile' element={<Profile/>}/>
           </Route>
 
           <Route path='/' element={<Login />} />
