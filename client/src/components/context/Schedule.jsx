@@ -140,7 +140,7 @@ export function Schedule({ children }) {
     },
     {
         "sub": "Maths-II",
-        "start": "01:0 AM",
+        "start": "01:00 AM",
         "end": "02:00 AM",
         "faculty": "Vardhan Parmar"
     },
