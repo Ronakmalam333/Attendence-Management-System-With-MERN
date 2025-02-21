@@ -73,3 +73,21 @@
     box-shadow: 0 0 10px #999;
     background: #222222c2;
 }
+
+/*! Extra Small Devices (Portrait Phones) */
+@media only screen and (max-width: 575px) {
+    .token_contain {
+        width: 100%;
+    }
+    .current-time{
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 2rem;
+    }
+    
+    .token_box {
+        margin-top: 60px;
+        gap: 30px;
+    }
+}
