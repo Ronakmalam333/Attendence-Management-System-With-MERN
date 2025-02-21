@@ -137,7 +137,7 @@ const Register = () => {
         </form>
         or
         <div className="signin-btn">
-          Don't Have An Account <span>Sign In</span>
+          Don't Have An Account <span onClick={() => navigate('/signin')}>Sign In</span>
         </div>
       </div>
     </div>

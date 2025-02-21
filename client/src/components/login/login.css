@@ -14,7 +14,7 @@
     position: relative;
     height: 100%;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-    background: var(--secondary-color);
+    background: white;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
@@ -80,6 +80,14 @@ form .back-btn svg {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    gap: 50px;
+}
+
+.role-input2{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 50px;
 }
 
