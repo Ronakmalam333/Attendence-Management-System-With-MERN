@@ -134,10 +134,10 @@ const Register = () => {
 
           </div>
           <button type="submit">Register</button>
-        </form>
+        </form>     
         or
         <div className="signin-btn">
-          Don't Have An Account <span onClick={() => navigate('/signin')}>Sign In</span>
+          Already Have An Account <span onClick={() => navigate('/signin')}>Sign In</span>
         </div>
       </div>
     </div>

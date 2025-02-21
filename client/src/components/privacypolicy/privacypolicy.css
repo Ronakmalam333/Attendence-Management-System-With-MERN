@@ -77,6 +77,11 @@
   
   /* Responsive Design */
   @media (max-width: 768px) {
+
+    .privacy-policy-container{
+      padding: 10px;
+    }
+
     .privacy-policy-container h1 {
       font-size: 2rem;
     }

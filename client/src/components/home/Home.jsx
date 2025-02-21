@@ -5,9 +5,13 @@ import Details from './details/Details'
 import Token from './token/Token'
 function Home() {
   return (
-    <div className='home'>
-      <Details/>
-      <Token/>
+    <div className="home-contain">
+
+      <div className='home'>
+        <Details />
+        <Token />
+      </div>
+
     </div>
   )
 }

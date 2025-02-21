@@ -77,6 +77,13 @@ function Token() {
           className="token_input"
           type="text"
           placeholder="Enter Subject Token"
+          onInput={(e) => {
+            let value = e.target.value;
+
+            if(value.length > 4){
+              e.target.value = value.substring(0,4);
+            }
+          }}
         />
         {errors.subToken && <span className="error">{errors.subToken.message}</span>}
         <button className="submit_btn" type="submit">Submit</button>
