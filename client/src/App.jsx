@@ -7,6 +7,7 @@ import PrivacyPolicy from './components/privacypolicy/PrivacyPolicy';
 import Home from './components/home/Home';
 import NavbarLayout from './components/nested routing/NavbarLayout';
 import AboutUs from './components/about us/AboutUs';
+import Feedback from './components/feedback/Feedback';
 
 
 
@@ -21,6 +22,7 @@ function App() {
             <Route path='/home' element={<Home />} />
             <Route path='/privacypolicy' element={<PrivacyPolicy />} />
             <Route path='/aboutus' element={<AboutUs />} />
+            <Route path='/feedback' element={<Feedback/>}/>
           </Route>
 
           <Route path='/' element={<Login />} />

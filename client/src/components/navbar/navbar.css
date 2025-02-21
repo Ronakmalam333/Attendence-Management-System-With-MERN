@@ -57,7 +57,7 @@
 
 .other-details-item {
     height: 100%;
-    width: calc(100%/4);
+    width: calc(100%/3);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -80,27 +80,6 @@
 }
 
 
-.other-details .other-details-item:hover~.dot {
-    opacity: 1;
-}
-
-.other-details .other-details-item:nth-child(1):hover~.dot {
-    left: calc(12.5% - 5px); /* Center under 1st item (25% width container) */
-}
-
-.other-details .other-details-item:nth-child(2):hover~.dot {
-    left: calc(37.5% - 5px); /* Center under 2nd item */
-}
-
-.other-details .other-details-item:nth-child(3):hover~.dot {
-    left: calc(62.5% - 5px); /* Center under 3rd item */
-}
-
-.other-details .other-details-item:nth-child(4):hover~.dot {
-    left: calc(87.5% - 5px); /* Center under 4th item */
-}
-
-
 .account {
     width: 10%;
     height: 100%;
@@ -117,40 +96,8 @@
 .account:hover svg {
     transition: 0.3s;
     transform: scale(120%);
-    opacity: 0.5;
+    opacity: 0.7;
 }
-
-.acc-box {
-    position: absolute;
-    display: none;
-    top: 60px;
-    right: 10px;
-    width: 140px;
-    height: auto;
-    border-radius: 15px;
-    background: var(--color);
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-    overflow: hidden;
-}
-
-.acc-box .acc-box-item {
-    width: 100%;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    text-transform: capitalize;
-    border-bottom: 2px solid #333;
-    transition: 0.3s;
-    color: var(--primary-color);
-}
-
-.acc-box .acc-box-item:hover {
-    transition: 0.3s;
-    background: #333;
-}
-
 
 
 /*! Extra Small Devices (Portrait Phones) */
