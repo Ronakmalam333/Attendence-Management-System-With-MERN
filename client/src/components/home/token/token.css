@@ -95,4 +95,8 @@
     .token_box::after{
         display: none;
     }
+
+    .token_input, .submit_btn {
+        width: 60%;
+    }
 }
