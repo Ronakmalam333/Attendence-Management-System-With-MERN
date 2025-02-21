@@ -1,6 +1,7 @@
 import React, { createContext } from 'react'
 
-export const scheduleContext = createContext()
+export const scheduleContext = createContext();
+
 export function Schedule({ children }) {
     const mon = [{
         "sub": "FERAJ",

@@ -45,8 +45,6 @@ function Token() {
   }
 
   const sub = currentSub ? currentSub.map(element => element.sub) : [];
-
-  console.log(sub);
   
 
   const hours = date.getHours();

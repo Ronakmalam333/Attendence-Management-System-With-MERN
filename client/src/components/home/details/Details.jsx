@@ -1,10 +1,23 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 import './details.css'
 import { scheduleContext } from '../../context/Schedule'
 function Details() {
+  const [date, setDate] = useState(new Date());
+
+  useEffect(() => {
+    let dateInterval = setInterval(() => {
+      setDate(new Date())
+    },1000);
+
+    return () => clearInterval(dateInterval)
+  })
+  
   const { mon, tue, wed, thu, fri, leave } = useContext(scheduleContext);
-  let day = new Date().getDay();
+
+
+  let day = date.getDay();
+  
   let schedule;
   switch (day) {
     case 1:
