@@ -23,6 +23,12 @@ export function Schedule({ children }) {
     {
         "sub": "OOPIC",
         "start": "01:00 PM",
+        "end": "02:00 PM",
+        "faculty": "Adil Ahmed"
+    },
+    {
+        "sub": "OOPIC",
+        "start": "02:00 PM",
         "end": "03:00 PM",
         "faculty": "Adil Ahmed"
     },
@@ -54,12 +60,12 @@ export function Schedule({ children }) {
     {
         "sub": "Library",
         "start": "01:00 PM",
-        "end": "03:00 PM"
+        "end": "02:00 PM"
     },
     {
         "sub": "Maths-II",
-        "start": "03:00 PM",
-        "end": "04:00 PM",
+        "start": "02:00 PM",
+        "end": "03:00 PM",
         "faculty": "Vardhan Parmar"
     },
     {
@@ -76,6 +82,12 @@ export function Schedule({ children }) {
     {
         "sub": "ND",
         "start": "10:15 AM",
+        "end": "11:15 AM",
+        "faculty": "Sakshi Kasera"
+    },
+    {
+        "sub": "ND",
+        "start": "11:15 AM",
         "end": "12:15 AM",
         "faculty": "Sakshi Kasera"
     },
@@ -91,7 +103,7 @@ export function Schedule({ children }) {
         "end": "03:00 PM"
     },
     {
-        "sub": "Free",
+        "sub": "Free Class",
         "start": "03:00 PM",
         "end": "04:00 PM"
     }]
@@ -123,12 +135,24 @@ export function Schedule({ children }) {
     {
         "sub": "FERAJ",
         "start": "02:00 PM",
+        "end": "03:00 PM",
+        "faculty": "Adil Ahmed"
+    },
+    {
+        "sub": "FERAJ",
+        "start": "03:00 PM",
         "end": "04:00 PM",
         "faculty": "Adil Ahmed"
     }]
     const fri = [{
         "sub": "BENJ",
         "start": "09:15 AM",
+        "end": "10:15 AM",
+        "faculty": "Adil Ahmed"
+    },
+    {
+        "sub": "BENJ",
+        "start": "10:15 AM",
         "end": "11:15 AM",
         "faculty": "Adil Ahmed"
     },

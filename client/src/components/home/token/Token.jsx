@@ -46,24 +46,28 @@ function Token() {
 
   const sub = currentSub ? currentSub.map(element => element.sub) : [];
 
+  console.log(sub);
+  
+
   const hours = date.getHours();
   const minutes = date.getMinutes();
   
-  const formattedTime = `${hours}:${String(minutes).padStart(2, "0")}`;
+  const time = `${hours}.${String(minutes).padStart(2, "0")}`;
 
-  let time = hours + minutes / 60;
+
+  
   let onTimeSub = "No Classes Found";
 
   if (time >= 9.15 && time < 10.15) onTimeSub = sub[0];
   else if (time >= 10.15 && time < 11.15) onTimeSub = sub[1];
   else if (time >= 11.15 && time < 12.15) onTimeSub = sub[2];
-  else if (time >= 13 && time < 14) onTimeSub = sub[3];
+  else if (time >= 12.15 && time < 14) onTimeSub = sub[3];
   else if (time >= 14 && time < 15) onTimeSub = sub[4];
   else if (time >= 15 && time < 16) onTimeSub = sub[5];
 
   return (
     <div className="token_contain">
-      <span className="current-time">{formattedTime}</span>
+      <span className="current-time">{`${hours}:${minutes}`}</span>
       <form className="token_box" onSubmit={handleSubmit(onSubmit)}>
         <h1 className="sub_name">{onTimeSub}</h1>
         <input
