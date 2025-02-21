@@ -2,8 +2,10 @@ import React, { useContext } from 'react'
 
 import './details.css'
 import { scheduleContext } from '../../context/Schedule'
+import { tokenContext } from '../../context/Token'
 function Details() {
   const { mon, tue, wed, thu, fri, leave } = useContext(scheduleContext);
+  const { token, setToken } = useContext(tokenContext);
   let day = new Date().getDay();
   let schedule;
   switch (day) {
@@ -53,7 +55,19 @@ function Details() {
           </div>
 
           <div className='attendance'>
-
+            {token == 0 ?
+              <div>
+                <h1>subject name</h1>
+                <input type="text" placeholder='Enter Subject Token' />
+                <button>Submit</button>
+              </div>
+              :
+              <div>
+                <h1>subject name</h1>
+                <div>0000</div>
+                <button>Generate Token</button>
+              </div>
+            }
           </div>
         </div>
       </div>

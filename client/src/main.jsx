@@ -8,7 +8,9 @@ import { Schedule } from './components/context/Schedule.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Schedule>
-      <App />
+      <Token>
+        <App />
+      </Token>
     </Schedule>
   </StrictMode>,
 )
