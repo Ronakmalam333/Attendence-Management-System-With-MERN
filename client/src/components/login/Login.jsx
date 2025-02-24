@@ -57,7 +57,7 @@ function Login() {
                 type="radio"
                 value="staff" 
               />{" "}
-              staff
+              Staff
             </label>
           </div>
           <div className={`input input-email ${emailFocused || emailValue ? 'focused' : ''}`}>
