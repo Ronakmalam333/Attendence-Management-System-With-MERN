@@ -1,16 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./navbar.css";
+import { AuthContext } from "../context/AuthContext";
 
 function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
   const [hoveredIndex, setHoveredIndex] = useState(-1);
 
+  const { user } = useContext(AuthContext);
+
+  const basePath = user?.role === "staff" ? "/staff" : "/student";
+
   const otherDetailsItems = [
-    { path: "/aboutus", label: "about us" },
-    { path: "/privacypolicy", label: "privacy policy" },
-    { path: "/feedback", label: "feedback" },
+    { path: `${basePath}/aboutus`, label: "about us" },
+    { path: `${basePath}/privacypolicy`, label: "privacy policy" },
+    { path: `${basePath}/feedback`, label: "feedback" },
   ];
 
   const activeIndex = otherDetailsItems.findIndex(
@@ -24,17 +29,21 @@ function Navbar() {
   return (
     <div className='nav-contain'>
       <div className="hamburger">
-      <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#000000"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#000000">
+          <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
+        </svg>
       </div>
       <div className="logo"><h1>logo</h1></div>
       <div className='menus'>
-        <div className='menu-item' onClick={() => navigate("/home")}>
+        <div className='menu-item' onClick={() => navigate(basePath)}>
           Home
         </div>
-        <div className='menu-item' onClick={() => navigate("attendence")}>
+        <div className='menu-item' onClick={() => navigate(`${basePath}/attendence`)}>
           Attendance
         </div>
-        <div className='menu-item'>classes</div>
+        <div className='menu-item' onClick={() => navigate(`${basePath}/students`)}>
+          {user?.role === "staff" ? "Students" : "Classes"}
+        </div>
       </div>
       <div className='other-details'>
         {otherDetailsItems.map((item, index) => (
@@ -56,7 +65,7 @@ function Navbar() {
           }}
         ></span>
       </div>
-      <div className='account' onClick={() => navigate("/profile")}>
+      <div className='account' onClick={() => navigate(`${basePath}/profile`)}>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           height='45px'

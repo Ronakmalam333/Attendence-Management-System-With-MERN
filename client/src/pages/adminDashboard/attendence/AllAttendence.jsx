@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect } from "react";
 import * as XLSX from "xlsx";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
-import './Attendence.css';
+import './allattendence.css';
 
 const EditableTable = ({ data, onDataUpdate }) => {
   const handleCellEdit = (rowIndex, column, value) => {
@@ -93,7 +93,7 @@ const AttendanceChart = ({ data }) => {
 };
 
 // Main Component
-const Attendance = () => {
+const AllAttendence = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -212,4 +212,4 @@ const Attendance = () => {
   );
 };
 
-export default Attendance;
+export default AllAttendence;
