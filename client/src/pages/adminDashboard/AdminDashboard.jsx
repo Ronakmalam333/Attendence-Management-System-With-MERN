@@ -1,10 +1,11 @@
 
 import React from 'react'
+import './adminDashboard.css'
 
 function AdminDashboard() {
   return (
-    <div style={{height: "100vh", background: "red"}}>
-      adminDashboard
+    <div className='adminDashboard'>
+      adminDashboardcls
     </div>
   )
 }
