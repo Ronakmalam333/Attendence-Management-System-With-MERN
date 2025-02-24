@@ -41,7 +41,7 @@ function Navbar() {
         <div className='menu-item' onClick={() => navigate(`${basePath}/attendence`)}>
           Attendance
         </div>
-        <div className='menu-item' onClick={() => navigate(`${basePath == "/staff" ? "/staff" : "/student"}`)}>
+        <div className='menu-item' onClick={() => navigate(`${basePath}/${user?.role === "staff" ? "students" : "classes"}`)}>
           {user?.role === "staff" ? "Students" : "Classes"}
         </div>
       </div>

@@ -3,7 +3,7 @@ import './Profile.css'
 
 const Profile = () => {
   return (
-    <div>Profile</div>
+    <div className='profile-contain'>Profile</div>
   )
 }
 

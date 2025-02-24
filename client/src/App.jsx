@@ -14,6 +14,7 @@ import AdminDashboard from './pages/adminDashboard/AdminDashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import StudentAttendence from './pages/studentDashboard/attendence/StudentAttendence';
 import Classes from './pages/studentDashboard/classes/Classes';
+import Students from './pages/adminDashboard/students/Students';
 
 function App() {
   return (
@@ -36,10 +37,11 @@ function App() {
             >
               <Route index element={<StudentDashboard />} />
               <Route path='attendence' element={<StudentAttendence/>}/>
-              <Route path='students' element={<Classes/>}/>
+              <Route path='classes' element={<Classes/>}/>
               <Route path="privacypolicy" element={<PrivacyPolicy />} />
               <Route path="aboutus" element={<AboutUs />} />
               <Route path="feedback" element={<Feedback />} />
+              
             </Route>
 
             <Route
@@ -51,6 +53,7 @@ function App() {
               }
             >
               <Route index element={<AdminDashboard />} />
+              <Route path='students' element={<Students/>}/>
               <Route path="privacypolicy" element={<PrivacyPolicy />} />
               <Route path="aboutus" element={<AboutUs />} />
               <Route path="attendence" element={<AllAttendence />} />
