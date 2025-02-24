@@ -1,7 +1,8 @@
 
-.adminDashboard{
+.classes-contain{
     width: 100%;
     height: 90%;
     padding: 20px;
+    background: red;
     animation: fadeIn 1s ease-in-out;
 }
