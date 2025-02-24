@@ -24,30 +24,34 @@ function App() {
             <Route path="/signin" element={<Login />} />
             <Route path="/signup" element={<Register />} />
 
-            
-            <Route element={<NavbarLayout />}>
-         
-              <Route
-                path="/student"
-                element={
-                  <ProtectedRoute role="student">
-                    <StudentDashboard />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/staff"
-                element={
-                  <ProtectedRoute role="staff">
-                    <AdminDashboard />
-                  </ProtectedRoute>
-                }
-              />
+            <Route
+              path="/student/*"
+              element={
+                <ProtectedRoute role="student">
+                  <NavbarLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route index element={<StudentDashboard />} />
+              <Route path="privacypolicy" element={<PrivacyPolicy />} />
+              <Route path="aboutus" element={<AboutUs />} />
+              <Route path="attendence" element={<Attendence />} />
+              <Route path="feedback" element={<Feedback />} />
+            </Route>
 
-              <Route path="/privacypolicy" element={<PrivacyPolicy />} />
-              <Route path="/aboutus" element={<AboutUs />} />
-              <Route path="/attendence" element={<Attendence />} />
-              <Route path="/feedback" element={<Feedback />} />
+            <Route
+              path="/staff/*"
+              element={
+                <ProtectedRoute role="staff">
+                  <NavbarLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route index element={<AdminDashboard />} />
+              <Route path="privacypolicy" element={<PrivacyPolicy />} />
+              <Route path="aboutus" element={<AboutUs />} />
+              <Route path="attendence" element={<Attendence />} />
+              <Route path="feedback" element={<Feedback />} />
             </Route>
 
             <Route path="*" element={<Navigate to="/" />} />
