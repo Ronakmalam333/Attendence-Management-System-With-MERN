@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 
 import './details.css'
-import { scheduleContext } from '../../context/Schedule'
+import { scheduleContext } from '../../../../components/context/Schedule'
 function Details() {
   const [date, setDate] = useState(new Date());
 

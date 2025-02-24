@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import "./token.css";
-import { scheduleContext } from "../../context/Schedule";
+import { scheduleContext } from "../../../../components/context/Schedule";
 
 function Token() {
   const { register, handleSubmit, formState: { errors } } = useForm();

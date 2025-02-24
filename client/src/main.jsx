@@ -4,11 +4,14 @@ import './index.css'
 import App from './App.jsx'
 
 import { Schedule } from './components/context/Schedule.jsx'
+import { AuthProvider } from './components/context/AuthContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Schedule>
-      <App />
-    </Schedule>
-  </StrictMode>,
+    <AuthProvider>
+      <Schedule>
+        <App />
+      </Schedule>
+    </AuthProvider>
+  </StrictMode>
 )
