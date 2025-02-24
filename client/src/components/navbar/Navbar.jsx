@@ -27,13 +27,6 @@ function Navbar() {
       <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#000000"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
       </div>
       <div className="logo"><h1>logo</h1></div>
-      <div className="menus">
-        <div className="menu-item" onClick={() => navigate('/student')}>Home</div>
-        <div className="menu-item" onClick={() => navigate('attendence')}>Attendance</div>
-        <div className="menu-item">classes</div>
-        <div className="menu-item">menu 2</div>
-        <div className="menu-item">menu1</div>
-      </div>
       <div className='menus'>
         <div className='menu-item' onClick={() => navigate("/home")}>
           Home
