@@ -3,7 +3,7 @@ import './login.css';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import loginImg from './loginImg.jpg';
-import { AuthContext } from '../context/AuthContext'; // Import AuthContext
+import { AuthContext } from '../context/AuthContext'; 
 
 function Login() {
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ function Login() {
   const [passwordValue, setPasswordValue] = useState('');
   const [eye, setEye] = useState(false);
   const { register, handleSubmit, formState } = useForm();
-  const { login } = useContext(AuthContext); // Use AuthContext
+  const { login } = useContext(AuthContext); 
 
   const handleEmailFocus = () => setEmailFocused(true);
   const handleEmailBlur = () => setEmailFocused(false);
@@ -27,10 +27,10 @@ function Login() {
   const onSubmit = (data) => {
     console.log('Login Data:', data);
 
-    // Simulate login based on role
-    if (data.role === 'student' || data.role === 'admin') { // Change "staff" to "admin"
-      login(data.role); // Update the user's role in AuthContext
-      navigate(data.role === 'student' ? '/student' : '/admin'); // Redirect to the respective dashboard
+   
+    if (data.role === 'student' || data.role === 'staff') { 
+      login(data.role);
+      navigate(data.role === 'student' ? '/student' : '/staff'); 
     } else {
       console.error('Invalid role selected');
     }
@@ -55,9 +55,9 @@ function Login() {
               <input
                 {...register("role", { required: "Please select a role" })}
                 type="radio"
-                value="admin" // Change "staff" to "admin"
+                value="staff" 
               />{" "}
-              Admin
+              staff
             </label>
           </div>
           <div className={`input input-email ${emailFocused || emailValue ? 'focused' : ''}`}>

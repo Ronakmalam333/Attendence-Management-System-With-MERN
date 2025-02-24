@@ -19,14 +19,14 @@ function App() {
       <Router>
         <div className="container">
           <Routes>
-            {/* Public routes (no navbar) */}
+            
             <Route path="/" element={<Login />} />
             <Route path="/signin" element={<Login />} />
             <Route path="/signup" element={<Register />} />
 
-            {/* Routes with NavbarLayout */}
+            
             <Route element={<NavbarLayout />}>
-              {/* Role-based routes */}
+         
               <Route
                 path="/student"
                 element={
@@ -36,22 +36,20 @@ function App() {
                 }
               />
               <Route
-                path="/admin"
+                path="/staff"
                 element={
-                  <ProtectedRoute role="admin">
+                  <ProtectedRoute role="staff">
                     <AdminDashboard />
                   </ProtectedRoute>
                 }
               />
 
-              {/* Common routes */}
               <Route path="/privacypolicy" element={<PrivacyPolicy />} />
               <Route path="/aboutus" element={<AboutUs />} />
               <Route path="/attendence" element={<Attendence />} />
               <Route path="/feedback" element={<Feedback />} />
             </Route>
 
-            {/* Fallback route */}
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </div>
