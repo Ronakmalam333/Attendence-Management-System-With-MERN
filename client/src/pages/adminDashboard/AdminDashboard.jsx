@@ -2,6 +2,7 @@ import React from 'react'
 import './adminDashboard.css'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
+import LiveAttendence from './live attendence/LiveAttendence';
 
 function AdminDashboard() {
   const { register, handleSubmit, setValue } = useForm();
@@ -126,7 +127,7 @@ function AdminDashboard() {
         </div>
 
         <div className="live-attendence-contain">
-          
+          <LiveAttendence/>
         </div>
       </div>
     </div>
