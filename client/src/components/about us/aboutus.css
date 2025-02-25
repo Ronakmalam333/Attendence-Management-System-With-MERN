@@ -36,7 +36,7 @@
   margin: 3rem 0;
   padding: 2rem;
   border-radius: 15px;
-  background: rgba(255, 255, 255, 0.95);
+  background: transparent;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
