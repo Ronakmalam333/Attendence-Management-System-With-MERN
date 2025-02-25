@@ -3,7 +3,7 @@ import './login.css';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import loginImg from './loginImg.jpg';
-import { AuthContext } from '../context/AuthContext'; 
+import { AuthContext } from '../context/AuthContext';
 
 function Login() {
   const navigate = useNavigate();
@@ -12,8 +12,8 @@ function Login() {
   const [emailValue, setEmailValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const [eye, setEye] = useState(false);
-  const { register, handleSubmit, formState } = useForm();
-  const { login } = useContext(AuthContext); 
+  const { register, handleSubmit } = useForm();
+  const { login } = useContext(AuthContext);
 
   const handleEmailFocus = () => setEmailFocused(true);
   const handleEmailBlur = () => setEmailFocused(false);
@@ -24,15 +24,31 @@ function Login() {
     setEye(!eye);
   };
 
-  const onSubmit = (data) => {
-    console.log('Login Data:', data);
+  const onSubmit = async (data) => {
+    try {
+      const response = await fetch('http://localhost:5000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          identifier: data.uid,
+          password: data.password,
+          role: data.role
+        })
+      });
 
-   
-    if (data.role === 'student' || data.role === 'staff') { 
-      login(data.role);
-      navigate(data.role === 'student' ? '/student' : '/staff'); 
-    } else {
-      console.error('Invalid role selected');
+      const result = await response.json();
+
+      if (response.ok) {
+        login(result.user, result.token);
+        navigate(data.role === 'student' ? '/student' : '/staff');
+      } else {
+        alert('Login failed: ' + result.message);
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      alert('Login failed: Network error');
     }
   };
 
@@ -55,7 +71,7 @@ function Login() {
               <input
                 {...register("role", { required: "Please select a role" })}
                 type="radio"
-                value="staff" 
+                value="staff"
               />{" "}
               Staff
             </label>
@@ -70,10 +86,6 @@ function Login() {
               onChange={(e) => setEmailValue(e.target.value)}
               {...register('uid', {
                 required: 'This field is required',
-                pattern: {
-                  value: /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/,
-                  message: 'Invalid email'
-                }
               })}
             />
             <span className='bottom-border'></span>
