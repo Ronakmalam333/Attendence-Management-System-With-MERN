@@ -5,13 +5,10 @@ import axios from 'axios';
 import "./register.css";
 
 const Register = () => {
-<<<<<<< HEAD
-=======
   const [isCourseBox, setCourseBox] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState("");
   const [selectedSemester, setSelectedSemester] = useState("");
 
->>>>>>> main
   const navigate = useNavigate();
   const {
     register,

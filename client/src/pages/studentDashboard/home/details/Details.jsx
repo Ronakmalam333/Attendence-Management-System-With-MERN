@@ -1,11 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 
 import './details.css'
-<<<<<<< HEAD:client/src/components/home/details/Details.jsx
-import { scheduleContext } from '../../../context/Schedule'
-=======
-import { scheduleContext } from '../../../../components/context/Schedule'
->>>>>>> main:client/src/pages/studentDashboard/home/details/Details.jsx
+import { scheduleContext } from '../../../../context/Schedule'
 function Details() {
   const [date, setDate] = useState(new Date());
 

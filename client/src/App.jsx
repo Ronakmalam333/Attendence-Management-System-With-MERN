@@ -8,7 +8,7 @@ import NavbarLayout from './components/nested routing/NavbarLayout';
 import AboutUs from './components/about us/AboutUs';
 import Attendence from './components/attendence/Attendence';
 import Feedback from './components/feedback/Feedback';
-import { AuthProvider } from './components/context/AuthContext';
+import { AuthProvider } from './context/AuthContext';
 import StudentDashboard from './pages/studentDashboard/StudentDashboard';
 import AdminDashboard from './pages/adminDashboard/AdminDashboard';
 import ProtectedRoute from './components/ProtectedRoute';
