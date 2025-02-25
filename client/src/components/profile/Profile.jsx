@@ -25,7 +25,8 @@ const Profile = () => {
   };
 
   return (
-    <div className='profile-contain'>
+      <div className="profile-contain">
+    <div className='profile'>
       <div className='profile-header'>
         <label htmlFor='profile-upload' className='profile-pic-label'>
           <input
@@ -131,6 +132,7 @@ const Profile = () => {
           </div>
         </div>
       )}
+    </div>
     </div>
   );
 };
