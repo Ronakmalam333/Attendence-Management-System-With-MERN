@@ -40,16 +40,53 @@ const Register = () => {
 
   const handleSemesterSelect = (semester) => {
     setSelectedSemester(semester);
-    setValue("semister", semester);
+    setValue("semester", semester); // Updated to "semester" for consistency
     setCourseBox(false);
   };
 
-  const onSubmit = (data) => {
-    console.log("Registered Data:", data);
-    // Add your submission logic here
+  const onSubmit = async (data) => {
+    try {
+      const endpoint = data.role === "student" ? "/student" : "/admin";
+      const url = `http://localhost:5000${endpoint}`;
+
+      // Prepare the data to send to the server
+      const payload = {
+        firstname: data.firstname,
+        lastname: data.lastname,
+        email: data.email,
+        uid: data.uid,
+        password: data.password,
+        role: data.role,
+        ...(data.role === "student" && {
+          course: data.course,
+          semester: data.semester, // Updated to "semester"
+        }),
+      };
+
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert(`${data.role === "student" ? "Student" : "Admin"} registered successfully!`);
+        navigate("/signin"); // Redirect to sign-in page
+      } else {
+        throw new Error(result.message || "Registration failed");
+      }
+    } catch (error) {
+      console.error("Error during registration:", error);
+      alert(`Registration failed: ${error.message}`);
+    }
   };
 
   const password = watch("password");
+  const role = watch("role");
 
   return (
     <div className="register-container">
@@ -127,76 +164,84 @@ const Register = () => {
             {errors.uid && <p className="error">{errors.uid.message}</p>}
           </div>
 
-          <div className="input-group">
-            <button
-              className="course-btn"
-              onClick={courseBox}
-              style={{ border: `${errors.course || errors.semister ? "2px solid red" : "2px solid #ddd"}` }}
-            >
-              {selectedCourse || "Select Course"}
-              {selectedSemester && ` - Sem ${selectedSemester}`}
-              <span>
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000">
-                  <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
-                </svg>
-              </span>
-            </button>
+          {role === "student" && (
+            <div className="input-group">
+              <button
+                className="course-btn"
+                onClick={courseBox}
+                style={{ border: `${errors.course || errors.semester ? "2px solid red" : "2px solid #ddd"}` }}
+              >
+                {selectedCourse || "Select Course"}
+                {selectedSemester && ` - Sem ${selectedSemester}`}
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000">
+                    <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
+                  </svg>
+                </span>
+              </button>
 
-            <div
-              className="course"
-              onClick={hideCourseBox}
-              style={{ display: `${isCourseBox ? "flex" : "none"}` }}
-            >
+              <div
+                className="course"
+                onClick={hideCourseBox}
+                style={{ display: `${isCourseBox ? "flex" : "none"}` }}
+              >
+                <div className="course-input-contain">
+                  <span
+                    className="backToRegister"
+                    style={{ position: "absolute", top: "15px", left: "15px", cursor: "pointer" }}
+                    onClick={handleBackButton}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#000000">
+                      <path d="M372.31-267.69 160-480l212.31-212.31L400.62-664l-164 164H800v40H236.62l164 164-28.31 28.31Z"/>
+                    </svg>
+                  </span>
 
-              <div className="course-input-contain">
+                  <input
+                    {...register("course", { required: role === "student" ? "Course is required" : false })}
+                    type="hidden"
+                    value={selectedCourse}
+                  />
+                  <input
+                    {...register("semester", { required: role === "student" ? "Semester is required" : false })}
+                    type="hidden"
+                    value={selectedSemester}
+                  />
 
-                <span className="backToRegister" style={{position: "absolute", top:"15px", left: "15px", cursor: "pointer"}} onClick={handleBackButton}><svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#000000"><path d="M372.31-267.69 160-480l212.31-212.31L400.62-664l-164 164H800v40H236.62l164 164-28.31 28.31Z"/></svg></span>
+                  <div className="courses">
+                    <div>
+                      {["B-tech CSE", "B-tech ME", "B-tech ECE", "B-tech Civil", "MCA", "MBA"].map((course) => (
+                        <span
+                          key={course}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleCourseSelect(course);
+                          }}
+                          className={selectedCourse === course ? "selected" : ""}
+                        >
+                          {course}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
 
-                <input
-                  {...register("course", { required: "Course is required" })}
-                  type="hidden"
-                  value={selectedCourse}
-                />
-                <input
-                  {...register("semister", { required: "Semester is required" })}
-                  type="hidden"
-                  value={selectedSemester}
-                />
-
-                <div className="courses">
-                  <div>
-                    {["B-tech CSE", "B-tech ME", "B-tech ECE", "B-tech Civil", "MCA", "MBA"].map((course) => (
+                  <div className="sem">
+                    {[1, 2, 3, 4, 5, 6, 7, 8].map((sem) => (
                       <span
-                        key={course}
+                        key={sem}
                         onClick={(e) => {
                           e.preventDefault();
-                          handleCourseSelect(course);
+                          handleSemesterSelect(sem.toString());
                         }}
-                        className={selectedCourse === course ? "selected" : ""}
+                        className={selectedSemester === sem.toString() ? "selected" : ""}
                       >
-                        {course}
+                        {sem}
                       </span>
                     ))}
                   </div>
                 </div>
-
-                <div className="sem">
-                  {[1, 2, 3, 4, 5, 6, 7, 8].map((sem) => (
-                    <span
-                      key={sem}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleSemesterSelect(sem.toString());
-                      }}
-                      className={selectedSemester === sem.toString() ? "selected" : ""}
-                    >
-                      {sem}
-                    </span>
-                  ))}
-                </div>
               </div>
             </div>
-          </div>
+          )}
 
           <div className="input-group">
             <input
