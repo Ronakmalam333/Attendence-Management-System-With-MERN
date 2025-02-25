@@ -15,6 +15,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import StudentAttendence from './pages/studentDashboard/attendence/StudentAttendence';
 import Classes from './pages/studentDashboard/classes/Classes';
 import Students from './pages/adminDashboard/students/Students';
+import Profile from './components/profile/Profile';
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
               <Route path="privacypolicy" element={<PrivacyPolicy />} />
               <Route path="aboutus" element={<AboutUs />} />
               <Route path="feedback" element={<Feedback />} />
+              <Route path='profile' element={<Profile/>}/>
               
             </Route>
 
@@ -58,6 +60,8 @@ function App() {
               <Route path="aboutus" element={<AboutUs />} />
               <Route path="attendence" element={<AllAttendence />} />
               <Route path="feedback" element={<Feedback />} />
+              <Route path='profile' element={<Profile/>}/>
+
             </Route>
 
             <Route path="*" element={<Navigate to="/" />} />
