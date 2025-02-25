@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
 
 const connectDb = require('./config/db');
 const student = require('./models/student');
@@ -10,6 +11,7 @@ const attendance = require('./models/attendance');
 
 const app = express();
 connectDb();
+const SECRET_KEY = "This is my security key";
 
 app.use(express.json());
 app.use(cors());
@@ -64,10 +66,12 @@ app.post('/login', async (req, res) => {
     try {
         if (role === 'student') {
             const studentExist = await student.findOne({ $or: [{ uid: username }, { email: username }] });
+            console.log(studentExist)
             if (studentExist) {
                 const studentMatch = await bcrypt.compare(password, studentExist.password);
                 if (studentMatch) {
-                    return res.json({ message: "Login Successful" });
+                    const token = jwt.sign({ username }, SECRET_KEY, { expiresIn: '24h' });
+                    return res.json({ message: "Login Successful", token, role });
                 }
             }
         } else {
@@ -76,7 +80,8 @@ app.post('/login', async (req, res) => {
             if (staffExist) {
                 const staffMatch = await bcrypt.compare(password, staffExist.password);
                 if (staffMatch) {
-                    return res.json({ message: "Login Successful" });
+                    const token = jwt.sign({ username }, SECRET_KEY, { expiresIn: '24h' });
+                    return res.json({ message: "Login Successful", token, role });
                 }
             }
         }

@@ -55,17 +55,17 @@ const AboutUs = () => {
           <div className="team-card">
             <div className="team-photo" style={{backgroundImage: 'url(https://via.placeholder.com/150)'}}></div>
             <h3>Anmol Sinha</h3>
-            <p>CEO/CO-Founder</p>
+            <p>CO-Founder</p>
           </div>
           <div className="team-card">
             <div className="team-photo" style={{backgroundImage: 'url(https://via.placeholder.com/150)'}}></div>
             <h3>Jugendra Kashyap</h3>
-            <p>CTO/CO-Founder</p>
+            <p>CO-Founder</p>
           </div>
           <div className="team-card">
             <div className="team-photo" style={{backgroundImage: 'url(https://via.placeholder.com/150)'}}></div>
             <h3>Ronak Malak</h3>
-            <p>Lead Developer/CO-Founder</p>
+            <p>CO-Founder</p>
           </div>
         </div>
       </section>

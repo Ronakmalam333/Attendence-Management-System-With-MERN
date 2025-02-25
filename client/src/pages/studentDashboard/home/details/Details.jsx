@@ -1,12 +1,23 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 import './details.css'
-import { scheduleContext } from '../../context/Schedule'
-
+import { scheduleContext } from '../../../../context/Schedule'
 function Details() {
-  const { mon, tue, wed, thu, fri, leave } = useContext(scheduleContext);
+  const [date, setDate] = useState(new Date());
+
+  useEffect(() => {
+    let dateInterval = setInterval(() => {
+      setDate(new Date())
+    },1000);
+
+    return () => clearInterval(dateInterval)
+  })
   
-  let day = new Date().getDay();
+  const { mon, tue, wed, thu, fri, leave } = useContext(scheduleContext);
+
+
+  let day = date.getDay();
+  
   let schedule;
   switch (day) {
     case 1:
@@ -28,7 +39,14 @@ function Details() {
       schedule = leave;
       break;
   }
-  console.log(mon);
+  
+  let scheduleLength = [];
+
+  for(let i=1; i<=schedule.length; i++){
+    scheduleLength.push(i);
+  }
+  
+  
   return (
     <div className='schedule-contain'>
       <div className='user_info'>
@@ -43,8 +61,8 @@ function Details() {
         <h2>{new Date().toDateString()}</h2>
         <div className='current-schedule'>
           <div className='subjects-contain'>
-            {schedule.map((value) => (
-              <div className='today-sub'>
+            {schedule.map((value, index) => (
+              <div key={index} className='today-sub'>
                 <div className='today-time'>
                   <div>{value.start}</div>
                   <div>{value.end}</div>
@@ -54,7 +72,11 @@ function Details() {
             ))}
           </div>
 
-          <div className='attendance'></div>
+          <div className='attendance'>
+            {scheduleLength.map((value, index, arr) => (
+              <div key={index} style={{height: `calc(100%/${arr.length})`}}>pending</div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
