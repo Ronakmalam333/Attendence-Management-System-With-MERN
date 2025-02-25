@@ -22,7 +22,17 @@
     height: 100%;
     aspect-ratio: 1/1;
     border-radius: 50%;
-    background-color: var(--secondary-color);
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#profile_img svg{
+    fill: white;
 }
 
 #user_details {
@@ -95,6 +105,7 @@
     height: 100%;
     background-color: var(--secondary-color);
     border-radius: 10px;
+    border: 1px solid #333;
 }
 
 .attendance div{
@@ -113,7 +124,8 @@
     height: 15%;
     border-radius: 10px;
     top: -18%;
-    background: var(--secondary-color);
+    background: #333;
+    color: white;
     display: flex;
     align-items: center;
     justify-content: center;

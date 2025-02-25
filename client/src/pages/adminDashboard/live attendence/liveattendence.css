@@ -2,5 +2,161 @@
 .live-attendence{
     width: 100%;
     height: 100%;
+    
+}
+
+.heading{
+    width: 100%;
+    height: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.heading h1{
+    font-weight: 400;
+}
+
+.heading span{
+    font-size: 1.2rem;
+}
+
+.live-attendence-box{
+    width: 100%;
+    height: 85%;
     padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.185);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #333;
+    color: white; 
+}
+
+.live-attendence-box .table-heading{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.live-attendence-box .table-heading span{
+    background: var(--secondary-color);
+}
+
+.live-attendence-box .table-heading span:nth-child(1){
+    height: 100%;
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.live-attendence-box .table-heading span:nth-child(2){
+    height: 100%;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.live-attendence-box .table-heading span:nth-child(3){
+    height: 100%;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.live-attendence-box .table-heading span:nth-child(4){
+    height: 100%;
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.live-attendence-box .table-body{
+    height: 90%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow: scroll;
+    scrollbar-width: none;
+}
+
+.table-body .student-entry{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.table-body .student-entry span{
+    margin-top: 20px;
+    background: #222;
+}
+
+.table-body .student-entry span:nth-child(1){
+    height: 100%;
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.table-body .student-entry span:nth-child(2){
+    height: 100%;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.table-body .student-entry span:nth-child(3){
+    height: 100%;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.table-body .student-entry span:nth-child(4){
+    height: 100%;
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    cursor: pointer;
+    background: red;
+}
+
+.table-body .submit-attendence{
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: rgba(0, 180, 0, 0.652);
+    bottom: 8%;
+    left: 27%;
+}
+
+.table-body .submit-attendence:hover{
+    background: rgba(0, 180, 0, 0.952);
 }
