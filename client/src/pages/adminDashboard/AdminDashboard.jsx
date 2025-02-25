@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './adminDashboard.css'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
@@ -10,6 +10,21 @@ function AdminDashboard() {
   const [selectedCourse, setSelectedCourse] = useState("");
   const [selectedSemester, setSelectedSemester] = useState("");
   const [generatedToken, setGeneratedToken] = useState("");
+  
+  const [date, setDate] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setDate(new Date())
+    }, 1000)
+    return () => {
+      clearInterval(timer
+      )
+    }
+  },[])
+
+  const time = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+  
 
   const generateToken = () => {
 
@@ -69,6 +84,7 @@ function AdminDashboard() {
               <h2>anmol sinha</h2><br />
               <p>Staff Id :- 493287</p>
             </div>
+            <span>Time : {time}</span>
           </div>
 
           <form className="token-generate" onSubmit={handleSubmit(onSubmit)}>
