@@ -28,6 +28,11 @@ const Register = () => {
     setCourseBox(false);
   };
 
+  const handleBackButton = (e) => {
+    e.preventDefault();
+    setCourseBox(false);
+  };
+
   const handleCourseSelect = (course) => {
     setSelectedCourse(course);
     setValue("course", course);
@@ -145,7 +150,7 @@ const Register = () => {
 
               <div className="course-input-contain">
 
-                <span style={{position: "absolute", top:"15px", left: "15px", cursor: "pointer"}} onClick={hideCourseBox}>back</span>
+                <span className="backToRegister" style={{position: "absolute", top:"15px", left: "15px", cursor: "pointer"}} onClick={handleBackButton}><svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#000000"><path d="M372.31-267.69 160-480l212.31-212.31L400.62-664l-164 164H800v40H236.62l164 164-28.31 28.31Z"/></svg></span>
 
                 <input
                   {...register("course", { required: "Course is required" })}

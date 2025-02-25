@@ -4,4 +4,121 @@
     height: 90%;
     padding: 20px;
     animation: fadeIn 1s ease-in-out;
+    overflow: scroll;
+    scrollbar-width: none;
+}
+
+.admin-contain{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+}
+
+.token-generate-contain{
+    width: 35%;
+    height: 100%;
+    background: var(--secondary-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.185);
+    border-radius: 10px;
+}
+
+.live-attendence-contain{
+    width: 55%;
+    height: 100%;
+    background: var(--secondary-color);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.185);
+}
+
+.staff-details{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.staff-pic{
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background: #333;
+}
+
+.staff-pic svg{
+    fill: white;
+}
+
+.staff-info h2{
+    font-weight: 500;
+}
+
+.token-generate{
+    width: 100%;
+    height: calc(100% - 30%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.token-generate .tokenHere{
+    width: 50%;
+    height: 40px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(0, 60, 211, 0.873);
+    color: white;
+    outline: none;
+    cursor: pointer;
+}
+
+.token-generate .tokenHere::placeholder{
+    color: white;
+}
+
+.token-generate .input_branch{
+    width: 50%;
+    height: 40px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background: #333;
+    color: white;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.input_branch:hover{
+    background: #444;
+}
+
+.input_branch svg{
+    fill: white;
+}
+
+.token-generate .input_branch::placeholder{
+    color: white;
+}
+
+.token-generate h1{
+    margin-bottom: 30px;
+    cursor: copy;
 }
