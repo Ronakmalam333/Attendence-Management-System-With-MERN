@@ -5,6 +5,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
+  const [isLoading, setIsLoading] = useState(true); // New loading state
 
   const login = (userData, token) => {
     setUser(userData);
@@ -38,10 +39,11 @@ export const AuthProvider = ({ children }) => {
         logout(); // Session expired
       }
     }
+    setIsLoading(false); // Set loading to false after checking
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, token, login, logout }}>
+    <AuthContext.Provider value={{ user, token, login, logout, isLoading }}>
       {children}
     </AuthContext.Provider>
   );

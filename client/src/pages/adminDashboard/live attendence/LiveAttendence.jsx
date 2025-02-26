@@ -106,7 +106,6 @@ function LiveAttendence({ course, semester }) {
               <span style={{background: `${student.status == 'P'?"rgba(53, 225, 0, 0.673)":"rgba(255, 11, 11, 0.836)"}`}}>{student.status}</span>
             </div>
           ))}
-          <button className="submit-attendence">Submit Attendance</button>
         </div>
       </div>
     </div>

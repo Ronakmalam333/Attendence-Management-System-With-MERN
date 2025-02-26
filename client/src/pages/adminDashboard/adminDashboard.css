@@ -133,3 +133,25 @@
     margin-bottom: 30px;
     cursor: copy;
 }
+
+.submit-attendence{
+    width: 50%;
+    height: 40px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: rgba(0, 138, 0, 0.752);
+    color: white;
+}
+
+.submit-attendence:hover{
+    width: 50%;
+    height: 40px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: rgba(0, 179, 0, 0.752);
+    color: white;
+}

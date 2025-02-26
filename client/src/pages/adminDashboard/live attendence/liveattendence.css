@@ -142,20 +142,3 @@
     border-radius: 5px;
     cursor: pointer;
 }
-
-.table-body .submit-attendence{
-    position: absolute;
-    width: 150px;
-    height: 40px;
-    outline: none;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background: rgba(0, 180, 0, 0.652);
-    bottom: 8%;
-    left: 27%;
-}
-
-.table-body .submit-attendence:hover{
-    background: rgba(0, 180, 0, 0.952);
-}
