@@ -173,3 +173,9 @@ dist
 
 # Finder (MacOS) folder config
 .DS_Store
+
+#extra files
+bun.lockb
+jsconfig.json
+temp
+yarn.lock
