@@ -214,7 +214,49 @@ server.put('/profile', verifyToken, async (req, res) => {
   }
 });
 
+// Fetch Staff Profile
+server.get('/staff/profile', verifyToken, async (req, res) => {
+  try {
+    const { id, role } = req.user;
+    if (role !== 'staff') {
+      return res.status(403).json({ message: 'Access denied' });
+    }
+    const staff = await Admin.findById(id);
+    if (!staff) {
+      return res.status(404).json({ message: 'Staff not found' });
+    }
+    res.json({ firstname: staff.firstname, lastname: staff.lastname, uid: staff.uid });
+  } catch (error) {
+    console.error("Error fetching staff profile:", error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
 
+// Fetch All Students or Filtered by Course and Semester
+server.get('/students', verifyToken, async (req, res) => {
+  try {
+    const { role } = req.user;
+    if (role !== 'staff') {
+      return res.status(403).json({ message: 'Access denied' });
+    }
+    const { course, semester } = req.query;
+    let query = {};
+    if (course && semester) {
+      query = { course, semester };
+    }
+    const students = await Student.find(query);
+    res.json(students.map(student => ({
+      id: student._id,
+      firstname: student.firstname,
+      lastname: student.lastname,
+      uid: student.uid,
+      status: 'P' // Placeholder; could be dynamic if attendance is tracked
+    })));
+  } catch (error) {
+    console.error("Error fetching students:", error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
 
 server.listen(5000, () => {
   console.log("Server is running on http://localhost:5000");
