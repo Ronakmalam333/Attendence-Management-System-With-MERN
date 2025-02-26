@@ -72,7 +72,7 @@ function LiveAttendence({ course, semester }) {
   const sub = currentSub ? currentSub.map(element => element.sub) : [];
   const hours = date.getHours();
   const minutes = date.getMinutes();
-  const time = `11.15`;
+  const time = `${hours}.${minutes}`;
 
   let onTimeSub = "No Classes Found";
   if (time >= 9.15 && time < 10.15) onTimeSub = sub[0];

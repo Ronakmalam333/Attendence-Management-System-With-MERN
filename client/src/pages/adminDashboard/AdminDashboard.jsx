@@ -16,7 +16,7 @@ function AdminDashboard() {
   const { token } = useContext(AuthContext);
   const { mon, tue, wed, thu, fri, leave } = useContext(scheduleContext);
 
-  // Fetch staff info on mount
+  // Fetch staff info on mount and update time
   useEffect(() => {
     const fetchStaffInfo = async () => {
       try {
@@ -113,17 +113,20 @@ function AdminDashboard() {
   }
 
   const sub = currentSub ? currentSub.map(element => element.sub) : [];
+
+  // Convert current time to decimal format (hours + minutes/60)
   const hours = date.getHours();
   const minutes = date.getMinutes();
-  const subtime = `11.15`;
+  const currentTime = hours + minutes / 60;
 
+  // Determine the current subject based on time slots
   let onTimeSub = "No Classes Found";
-  if (subtime >= "9.15" && subtime < "10.15") onTimeSub = sub[0];
-  else if (subtime >= "10.15" && subtime < "11.15") onTimeSub = sub[1];
-  else if (subtime >= "11.15" && subtime < "12.15") onTimeSub = sub[2];
-  else if (subtime >= "13" && subtime < "14") onTimeSub = sub[3];
-  else if (subtime >= "14" && subtime < "15") onTimeSub = sub[4];
-  else if (subtime >= "15" && subtime <= "16") onTimeSub = sub[5];
+  if (currentTime >= 9.25 && currentTime < 10.25) onTimeSub = sub[0] || "No Classes Found"; // 9:15 AM - 10:15 AM
+  else if (currentTime >= 10.25 && currentTime < 11.25) onTimeSub = sub[1] || "No Classes Found"; // 10:15 AM - 11:15 AM
+  else if (currentTime >= 11.25 && currentTime < 12.25) onTimeSub = sub[2] || "No Classes Found"; // 11:15 AM - 12:15 PM
+  else if (currentTime >= 13 && currentTime < 14) onTimeSub = sub[3] || "No Classes Found"; // 1:00 PM - 2:00 PM
+  else if (currentTime >= 14 && currentTime < 15) onTimeSub = sub[4] || "No Classes Found"; // 2:00 PM - 3:00 PM
+  else if (currentTime >= 15 && currentTime <= 16) onTimeSub = sub[5] || "No Classes Found"; // 3:00 PM - 4:00 PM
 
   const onSubmit = async (data) => {
     const { course, semester, generatedtoken } = data;
