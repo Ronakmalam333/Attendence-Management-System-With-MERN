@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const { Student, Admin, Attendance } = require("./modelSchema.cjs");
+const { Student, Admin, Attendance, GeneratedToken } = require("./modelSchema.cjs");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -257,6 +257,167 @@ server.get('/students', verifyToken, async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 });
+
+
+// Generate Token Endpoint
+server.post('/generateToken', verifyToken, async (req, res) => {
+  const { role } = req.user;
+  if (role !== 'staff') {
+    return res.status(403).json({ message: 'Access denied' });
+  }
+
+  const { course, semester, subject, date, generatedtoken } = req.body;
+
+  try {
+    // Check if session is already closed for this subject and date
+    const existingClosedToken = await GeneratedToken.findOne({
+      course,
+      semester,
+      subject,
+      date,
+      isClosed: true,
+    });
+    if (existingClosedToken) {
+      return res.status(400).json({
+        message: 'Attendance session already closed for this subject today',
+      });
+    }
+
+    // Delete any existing token (open or not) and create a new one
+    await GeneratedToken.deleteMany({ course, semester, subject, date });
+    const newToken = new GeneratedToken({
+      course,
+      semester,
+      subject,
+      date,
+      generatedtoken,
+      isClosed: false,
+    });
+    await newToken.save();
+    res.json({ message: 'Token generated successfully', generatedtoken });
+  } catch (error) {
+    console.error('Error generating token:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Validate Token Endpoint
+server.post('/validateToken', verifyToken, async (req, res) => {
+  const { role, id } = req.user;
+  if (role !== 'student') {
+    return res.status(403).json({ message: 'Access denied' });
+  }
+
+  const { subToken, subject, date } = req.body;
+
+  try {
+    const student = await Student.findById(id);
+    if (!student) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+
+    const { course, semester } = student;
+
+    // Validate token and check if session is closed
+    const storedToken = await GeneratedToken.findOne({
+      subject,
+      date,
+      generatedtoken: subToken,
+    });
+    if (!storedToken) {
+      return res.status(400).json({ message: 'Invalid token' });
+    }
+    if (storedToken.isClosed) {
+      return res.status(400).json({ message: 'Attendance session is closed' });
+    }
+
+    // Check for existing attendance
+    const existingAttendance = await Attendance.findOne({
+      studentId: id,
+      subject,
+      date,
+    });
+    if (existingAttendance) {
+      return res.status(400).json({ message: 'Attendance already recorded' });
+    }
+
+    // Record attendance
+    const newAttendance = new Attendance({
+      studentId: id,
+      subject,
+      date,
+      present: 1,
+    });
+    await newAttendance.save();
+    await Student.findByIdAndUpdate(id, {
+      $push: { attendance: newAttendance._id },
+    });
+
+    res.json({ message: 'Token successfully submitted', attendance: newAttendance });
+  } catch (error) {
+    console.error('Error validating token:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Close Attendance Session Endpoint
+server.post('/close-attendance', verifyToken, async (req, res) => {
+  const { role } = req.user;
+  if (role !== 'staff') {
+    return res.status(403).json({ message: 'Access denied' });
+  }
+
+  const { course, semester, subject, date } = req.body;
+
+  try {
+    // Find the token for the session
+    const tokenDoc = await GeneratedToken.findOne({
+      course,
+      semester,
+      subject,
+      date,
+    });
+    if (!tokenDoc) {
+      return res.status(404).json({ message: 'No active session found' });
+    }
+    if (tokenDoc.isClosed) {
+      return res.status(400).json({ message: 'Session already closed' });
+    }
+
+    // Close the session
+    tokenDoc.isClosed = true;
+    await tokenDoc.save();
+
+    // Mark absent for students who haven't submitted
+    const students = await Student.find({ course, semester });
+    const attendancePromises = students.map(async (student) => {
+      const existingAttendance = await Attendance.findOne({
+        studentId: student._id,
+        subject,
+        date,
+      });
+      if (!existingAttendance) {
+        const newAttendance = new Attendance({
+          studentId: student._id,
+          subject,
+          date,
+          present: 0,
+        });
+        await newAttendance.save();
+        await Student.findByIdAndUpdate(student._id, {
+          $push: { attendance: newAttendance._id },
+        });
+      }
+    });
+    await Promise.all(attendancePromises);
+
+    res.json({ message: 'Attendance session closed and absentees marked' });
+  } catch (error) {
+    console.error('Error closing attendance session:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 
 server.listen(5000, () => {
   console.log("Server is running on http://localhost:5000");

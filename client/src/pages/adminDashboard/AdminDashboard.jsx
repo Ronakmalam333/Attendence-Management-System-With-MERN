@@ -3,6 +3,7 @@ import './adminDashboard.css';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../components/context/AuthContext';
 import LiveAttendence from './live attendence/LiveAttendence';
+import { scheduleContext } from '../../components/context/Schedule';
 
 function AdminDashboard() {
   const { register, handleSubmit, setValue } = useForm();
@@ -13,6 +14,7 @@ function AdminDashboard() {
   const [staffInfo, setStaffInfo] = useState({ firstname: '', lastname: '', uid: '' });
   const [date, setDate] = useState(new Date());
   const { token } = useContext(AuthContext);
+  const { mon, tue, wed, thu, fri, leave } = useContext(scheduleContext);
 
   // Fetch staff info on mount
   useEffect(() => {
@@ -57,7 +59,7 @@ function AdminDashboard() {
       token += chars.charAt(Math.floor(Math.random() * chars.length));
     }
     setGeneratedToken(token);
-    setValue("token", token);
+    setValue("generatedtoken", token);
   };
 
   const courseBox = (e) => {
@@ -87,21 +89,110 @@ function AdminDashboard() {
     setCourseBox(false);
   };
 
-  const onSubmit = (data) => {
-    console.log("generated token:", data);
-    // Add submission logic here if needed
+  const day = date.getDay();
+  let currentSub;
+
+  switch (day) {
+    case 1:
+      currentSub = mon;
+      break;
+    case 2:
+      currentSub = tue;
+      break;
+    case 3:
+      currentSub = wed;
+      break;
+    case 4:
+      currentSub = thu;
+      break;
+    case 5:
+      currentSub = fri;
+      break;
+    default:
+      currentSub = leave;
+  }
+
+  const sub = currentSub ? currentSub.map(element => element.sub) : [];
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const subtime = `11.15`;
+
+  let onTimeSub = "No Classes Found";
+  if (subtime >= "9.15" && subtime < "10.15") onTimeSub = sub[0];
+  else if (subtime >= "10.15" && subtime < "11.15") onTimeSub = sub[1];
+  else if (subtime >= "11.15" && subtime < "12.15") onTimeSub = sub[2];
+  else if (subtime >= "13" && subtime < "14") onTimeSub = sub[3];
+  else if (subtime >= "14" && subtime < "15") onTimeSub = sub[4];
+  else if (subtime >= "15" && subtime <= "16") onTimeSub = sub[5];
+
+  const onSubmit = async (data) => {
+    const { course, semester, generatedtoken } = data;
+    try {
+      const response = await fetch('http://localhost:5000/generateToken', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          course,
+          semester,
+          subject: onTimeSub,
+          date: new Date().toISOString().split('T')[0],
+          generatedtoken
+        }),
+      });
+      const result = await response.json();
+      if (response.ok) {
+        console.log('Token stored:', result);
+      } else {
+        alert('Failed to store token: ' + result.message);
+      }
+    } catch (error) {
+      console.error('Error storing token:', error);
+      alert('Error storing token');
+    }
   };
 
   const handleSubmitAttendence = async (e) => {
     e.preventDefault();
-  }
+    if (onTimeSub === "No Classes Found") {
+      alert("No class is currently scheduled.");
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost:5000/close-attendance', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          course: selectedCourse,
+          semester: selectedSemester,
+          subject: onTimeSub,
+          date: new Date().toISOString().split('T')[0],
+        }),
+      });
+      const result = await response.json();
+      if (response.ok) {
+        alert('Attendance session closed and absentees marked');
+      } else {
+        alert('Failed to close attendance session: ' + result.message);
+      }
+    } catch (error) {
+      console.error('Error closing attendance session:', error);
+      alert('Error closing attendance session');
+    }
+  };
 
   return (
     <div className='adminDashboard'>
       <div className="admin-contain">
         <div className="token-generate-contain">
           <div className="staff-details">
-            <div className="staff-pic"><svg xmlns="http://www.w3.org/2000/svg" height="80px" viewBox="0 -960 960 960" width="80px" fill="#000000"><path d="M480-504.62q-49.5 0-84.75-35.25T360-624.62q0-49.5 35.25-84.75T480-744.62q49.5 0 84.75 35.25T600-624.62q0 49.5-35.25 84.75T480-504.62ZM200-215.38v-65.85q0-24.77 14.42-46.35 14.43-21.57 38.81-33.5 56.62-27.15 113.31-40.73 56.69-13.57 113.46-13.57 56.77 0 113.46 13.57 56.69 13.58 113.31 40.73 24.38 11.93 38.81 33.5Q760-306 760-281.23v65.85H200Zm40-40h480v-25.85q0-13.31-8.58-25-8.57-11.69-23.73-19.77-49.38-23.92-101.83-36.65-52.45-12.73-105.86-12.73t-105.86 12.73Q321.69-349.92 272.31-326q-15.16 8.08-23.73 19.77-8.58 11.69-8.58 25v25.85Zm240-289.24q33 0 56.5-23.5t23.5-56.5q0-33-23.5-56.5t-56.5-23.5q-33 0-56.5 23.5t-23.5 56.5q0 33 23.5 56.5t56.5 23.5Zm0-80Zm0 369.24Z" /></svg></div>
+            <div className="staff-pic"><svg xmlns="http://www.w3.org/2000/svg" height="80px" viewBox="0 -960 960 960" width="80px" fill="#000000"><path d="M480-504.62q-49.5 0-84.75-35.25T360-624.62q0-49.5 35.25-84.75T480-744.62q49.5 0 84.75 35.25T600-624.62q0 49.5-35.25 84.75T480-504.62ZM200-215.38v-65.85q0-24.77 14.42-46.35 14.43-21.57 38.81-33.5 56.62-27.15 113.31-40.73 56.69-13.57 113.46-13.57 56.77 0 113.46 13.57 56.69 13.58 113.31 40.73 24.38 11.93 38.81 33.5Q760-306 760-281.23v65.85H200Zm40-40h480v-25.85q0-13.31-8.58-25q-8.57-11.69-23.73-19.77q-49.38-23.92-101.83-36.65q-52.45-12.73-105.86-12.73t-105.86 12.73Q321.69-349.92 272.31-326q-15.16 8.08-23.73 19.77q-8.58 11.69-8.58 25v25.85Zm240-289.24q33 0 56.5-23.5t23.5-56.5q0-33-23.5-56.5t-56.5-23.5q-33 0-56.5 23.5t-23.5 56.5q0 33 23.5 56.5t56.5 23.5Zm0-80Zm0 369.24Z" /></svg></div>
             <div className="staff-info">
               <h2>{`${staffInfo.firstname} ${staffInfo.lastname}`}</h2><br />
               <p>Staff Id :- {staffInfo.uid}</p>
@@ -155,9 +246,9 @@ function AdminDashboard() {
             <h1>{generatedToken || "Token Show Here"}</h1>
             <button onClick={courseBox} className='input_branch'>
               {selectedCourse && selectedSemester ? `${selectedCourse} - ${selectedSemester}` : "Select Course And Semester"}
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m480-381.54 123.08-123.08H356.92L480-381.54Zm.13 261.54q-74.67 0-140.41-28.34-65.73-28.34-114.36-76.92-48.63-48.58-76.99-114.26Q120-405.19 120-479.87q0-74.67 28.34-140.41 28.34-65.73 76.92-114.36 48.58-48.63 114.26-76.99Q405.19-840 479.87-840q74.67 0 140.41 28.34 65.73 28.34 114.36 76.92 48.63 48.58 76.99 114.26Q840-554.81 840-480.13q0 74.67-28.34 140.41-28.34 65.73-76.92 114.36-48.58 48.63-114.26 76.99Q554.81-120 480.13-120Zm-.13-40q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" /></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m480-381.54 123.08-123.08H356.92L480-381.54Zm.13 261.54q-74.67 0-140.41-28.34-65.73-28.34-114.36-76.92-48.63-48.58-76.99-114.26Q120-405.19 120-479.87q0-74.67 28.34-140.41q28.34-65.73 76.92-114.36q48.58-48.63 114.26-76.99Q405.19-840 479.87-840q74.67 0 140.41 28.34q65.73 28.34 114.36 76.92q48.63 48.58 76.99 114.26Q840-554.81 840-480.13q0 74.67-28.34 140.41q-28.34 65.73-76.92 114.36q-48.58 48.63-114.26 76.99Q554.81-120 480.13-120Zm-.13-40q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" /></svg>
             </button>
-            <button className='tokenHere' type="submit" onClick={generateToken}>Generate Token</button>
+            <button className='tokenHere' type="submit" disabled={onTimeSub === "No Classes Found"} onClick={generateToken}>Generate Token</button>
             <button onClick={handleSubmitAttendence} className="submit-attendence">Submit Attendance</button>
           </form>
         </div>

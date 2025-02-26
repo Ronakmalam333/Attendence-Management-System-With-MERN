@@ -48,14 +48,24 @@ const attendanceSchema = new mongoose.Schema({
     present: { type: Number, enum: [0, 1], default: 0 }
 });
 
+const GeneratedTokenSchema = new mongoose.Schema({
+    course: String,
+    semester: String,
+    subject: String,
+    date: String,
+    generatedtoken: String  // Changed from 'token' to 'generatedtoken'
+});
+
 // Models
 const Student = mongoose.model('Student', studentSchema);
 const Admin = mongoose.model('Admin', adminSchema);
 const Attendance = mongoose.model('Attendance', attendanceSchema);
+const GeneratedToken = mongoose.model('Token', GeneratedTokenSchema);
 
 module.exports = {
     Student,
     Admin,
-    Attendance
+    Attendance,
+    GeneratedToken
 };
 
