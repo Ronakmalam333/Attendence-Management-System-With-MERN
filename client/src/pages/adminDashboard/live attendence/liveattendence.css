@@ -84,6 +84,7 @@
 }
 
 .live-attendence-box .table-body{
+    position: relative;
     height: 90%;
     width: 100%;
     display: flex;
@@ -91,6 +92,14 @@
     gap: 20px;
     overflow: scroll;
     scrollbar-width: none;
+}
+
+.table-body p{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 1rem;
+    transform: translate(-50%, -50%);
 }
 
 .table-body .student-entry{

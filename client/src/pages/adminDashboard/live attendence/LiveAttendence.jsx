@@ -9,43 +9,6 @@ function LiveAttendence({ course, semester }) {
   const { token } = useContext(AuthContext);
   const { mon, tue, wed, thu, fri, leave } = useContext(scheduleContext);
 
-  // Fetch students based on course and semester
-  useEffect(() => {
-    const fetchStudents = async () => {
-      try {
-        const url = new URL('http://localhost:5000/students');
-        if (course && semester) {
-          url.searchParams.append('course', course);
-          url.searchParams.append('semester', semester);
-        }
-        const response = await fetch(url, {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-        const data = await response.json();
-        if (response.ok) {
-          setStudents(data);
-        } else {
-          console.error('Failed to fetch students:', data.message);
-        }
-      } catch (error) {
-        console.error('Error fetching students:', error);
-      }
-    };
-
-    if (token) {
-      fetchStudents();
-    }
-  }, [token, course, semester]);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setDate(new Date());
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
   const day = date.getDay();
   let currentSub;
 
@@ -72,7 +35,8 @@ function LiveAttendence({ course, semester }) {
   const sub = currentSub ? currentSub.map(element => element.sub) : [];
   const hours = date.getHours();
   const minutes = date.getMinutes();
-  const time = `${hours}.${minutes}`;
+  // const time = `${hours}.${minutes}`;
+  const time = `13`;
 
   let onTimeSub = "No Classes Found";
   if (time >= 9.15 && time < 10.15) onTimeSub = sub[0];
@@ -81,6 +45,50 @@ function LiveAttendence({ course, semester }) {
   else if (time >= 13 && time < 14) onTimeSub = sub[3];
   else if (time >= 14 && time < 15) onTimeSub = sub[4];
   else if (time >= 15 && time <= 16) onTimeSub = sub[5];
+
+  useEffect(() => {
+    const fetchStudents = async () => {
+      try {
+        console.log("Fetching students with course:", course, "and semester:", semester);
+        const url = new URL('http://localhost:5000/students');
+        if (course && semester) {
+          url.searchParams.append('course', course);
+          url.searchParams.append('semester', semester);
+          url.searchParams.append('subject', onTimeSub);
+          url.searchParams.append('date', new Date().toISOString().split('T')[0]);
+          const response = await fetch(url, {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          });
+          const data = await response.json();
+          console.log("Received students data:", data);
+          if (response.ok) {
+            setStudents(data);
+          } else {
+            console.error('Failed to fetch students:', data.message);
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching students:', error);
+      }
+    };
+
+    if (token && course && semester && onTimeSub !== "No Classes Found") {
+      fetchStudents();
+      const interval = setInterval(fetchStudents, 5000);
+      return () => clearInterval(interval);
+    } else {
+      setStudents([]); // Clear students if conditions not met
+    }
+  }, [token, course, semester, onTimeSub]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setDate(new Date());
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   const totalPresent = students.filter(student => student.status === 'P').length;
 
@@ -98,14 +106,34 @@ function LiveAttendence({ course, semester }) {
           <span>Status</span>
         </div>
         <div className="table-body">
-          {students.map((student, index) => (
-            <div key={student.id} className="student-entry">
-              <span>{index + 1}</span>
-              <span>{`${student.firstname} ${student.lastname}`}</span>
-              <span>{student.uid}</span>
-              <span style={{background: `${student.status == 'P'?"rgba(53, 225, 0, 0.673)":"rgba(255, 11, 11, 0.836)"}`}}>{student.status}</span>
-            </div>
-          ))}
+          {course && semester ? (
+            students.length > 0 ? (
+              students.map((student, index) => (
+                <div key={student.id} className="student-entry">
+                  <span>{index + 1}</span>
+                  <span>{`${student.firstname} ${student.lastname}`}</span>
+                  <span>{student.uid}</span>
+                  <span
+                    style={{
+                      background: `${
+                        student.status === 'P'
+                          ? "rgba(53, 225, 0, 0.673)"
+                          : student.status === 'pending'
+                            ? "rgba(255, 255, 0, 0.5)" // Yellow for pending
+                            : "rgba(255, 11, 11, 0.836)"
+                      }`
+                    }}
+                  >
+                    {student.status}
+                  </span>
+                </div>
+              ))
+            ) : (
+              <p>No students found for the selected course and semester.</p>
+            )
+          ) : (
+            <p>Please select a course and semester to view students.</p>
+          )}
         </div>
       </div>
     </div>
