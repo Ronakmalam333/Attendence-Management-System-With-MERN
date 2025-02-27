@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./navbar.css";
 import { AuthContext } from "../context/AuthContext";
+import logopng from './MayaMatrixLogo.png';
 
 function Navbar() {
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ function Navbar() {
           <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
         </svg>
       </div>
-      <div className="logo"><h1>logo</h1></div>
+      <div className="logo" style={{backgroundImage: `url(${logopng})`}}></div>
       <div className='menus'>
         <div className='menu-item' onClick={() => navigate(basePath)}>
           Home
