@@ -20,7 +20,7 @@ import Profile from './components/profile/Profile';
 function App() {
   const { isLoading } = useContext(AuthContext);
 
-  // Wait until the AuthContext finishes loading before rendering routes
+
   if (isLoading) {
     return <div className='loadingPage'>
       <div className="loader-container">
@@ -32,7 +32,7 @@ function App() {
           <div className="dot"></div>
         </div>
       </div>
-    </div>; // Or a proper loading spinner
+    </div>; 
   }
 
   return (

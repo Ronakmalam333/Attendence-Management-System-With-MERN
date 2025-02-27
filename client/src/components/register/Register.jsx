@@ -40,7 +40,7 @@ const Register = () => {
 
   const handleSemesterSelect = (semester) => {
     setSelectedSemester(semester);
-    setValue("semester", semester); // Updated to "semester" for consistency
+    setValue("semester", semester); 
     setCourseBox(false);
   };
 
@@ -49,7 +49,7 @@ const Register = () => {
       const endpoint = data.role === "student" ? "/student" : "/admin";
       const url = `http://localhost:5000${endpoint}`;
 
-      // Prepare the data to send to the server
+      
       const payload = {
         firstname: data.firstname,
         lastname: data.lastname,
@@ -59,7 +59,7 @@ const Register = () => {
         role: data.role,
         ...(data.role === "student" && {
           course: data.course,
-          semester: data.semester, // Updated to "semester"
+          semester: data.semester, 
         }),
       };
 
@@ -75,7 +75,7 @@ const Register = () => {
 
       if (response.ok) {
         alert(`${data.role === "student" ? "Student" : "Admin"} registered successfully!`);
-        navigate("/signin"); // Redirect to sign-in page
+        navigate("/signin"); 
       } else {
         throw new Error(result.message || "Registration failed");
       }

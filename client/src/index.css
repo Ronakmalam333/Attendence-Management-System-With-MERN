@@ -1,6 +1,6 @@
 
 html, body {
-  -ms-touch-action: manipulation; /* For older Microsoft browsers */
+  -ms-touch-action: manipulation; 
   touch-action: manipulation;
 }
 

@@ -9,7 +9,7 @@ function Details() {
   const { token } = useContext(AuthContext);
   const { mon, tue, wed, thu, fri, leave } = useContext(scheduleContext);
 
-  // Fetch student data on mount
+ 
   useEffect(() => {
     const fetchStudentInfo = async () => {
       try {

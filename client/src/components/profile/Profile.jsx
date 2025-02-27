@@ -55,7 +55,7 @@ const Profile = () => {
 
   const handleLogout = () => {
     logout();
-    navigate('/'); // Redirect to login page after logout
+    navigate('/'); 
   };
 
   const handleInputChange = (e) => {
