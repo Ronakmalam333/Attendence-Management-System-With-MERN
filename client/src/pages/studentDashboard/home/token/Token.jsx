@@ -53,7 +53,7 @@ function Token() {
 
   if (time >= 9.15 && time < 10.15) onTimeSub = sub[0];
   else if (time >= 10.15 && time < 11.15) onTimeSub = sub[1];
-  else if (time >= 11.15 && time < 12.15) onTimeSub = sub[2];
+  else if (time >= 11.15 && time <= 12.30) onTimeSub = sub[2];
   else if (time >= 13 && time < 14) onTimeSub = sub[3];
   else if (time >= 14 && time < 15) onTimeSub = sub[4];
   else if (time >= 15 && time <= 16) onTimeSub = sub[5];

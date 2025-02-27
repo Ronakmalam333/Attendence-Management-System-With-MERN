@@ -124,7 +124,7 @@ function AdminDashboard() {
   let onTimeSub = "No Classes Found";
   if (currentTime >= 9.25 && currentTime < 10.25) onTimeSub = sub[0] || "No Classes Found"; // 9:15 AM - 10:15 AM
   else if (currentTime >= 10.25 && currentTime < 11.25) onTimeSub = sub[1] || "No Classes Found"; // 10:15 AM - 11:15 AM
-  else if (currentTime >= 11.25 && currentTime < 12.25) onTimeSub = sub[2] || "No Classes Found"; // 11:15 AM - 12:15 PM
+  else if (currentTime >= 11.25 && currentTime <= 12.30) onTimeSub = sub[2] || "No Classes Found"; // 11:15 AM - 12:15 PM
   else if (currentTime >= 13 && currentTime < 14) onTimeSub = sub[3] || "No Classes Found"; // 1:00 PM - 2:00 PM
   else if (currentTime >= 14 && currentTime < 15) onTimeSub = sub[4] || "No Classes Found"; // 2:00 PM - 3:00 PM
   else if (currentTime >= 15 && currentTime <= 16) onTimeSub = sub[5] || "No Classes Found"; // 3:00 PM - 4:00 PM
@@ -253,7 +253,7 @@ function AdminDashboard() {
               <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m480-381.54 123.08-123.08H356.92L480-381.54Zm.13 261.54q-74.67 0-140.41-28.34-65.73-28.34-114.36-76.92-48.63-48.58-76.99-114.26Q120-405.19 120-479.87q0-74.67 28.34-140.41q28.34-65.73 76.92-114.36q48.58-48.63 114.26-76.99Q405.19-840 479.87-840q74.67 0 140.41 28.34q65.73 28.34 114.36 76.92q48.63 48.58 76.99 114.26Q840-554.81 840-480.13q0 74.67-28.34 140.41q-28.34 65.73-76.92 114.36q-48.58 48.63-114.26 76.99Q554.81-120 480.13-120Zm-.13-40q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" /></svg>
             </button>
             <button className='tokenHere' type="submit" disabled={onTimeSub === "No Classes Found"} onClick={generateToken}>Generate Token</button>
-            <button onClick={handleSubmitAttendence} className="submit-attendence">Submit Attendance</button>
+            {/* <button onClick={handleSubmitAttendence} className="submit-attendence">Submit Attendance</button> */}
           </form>
         </div>
         <div className="live-attendence-contain">
