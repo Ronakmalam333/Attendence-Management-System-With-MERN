@@ -1,4 +1,3 @@
-/* General Styles */
 
 .profile-contain{
     width: 100%;
@@ -9,7 +8,7 @@
 
 .profile {
     width: 100%;
-    min-height: 100%; /* Full viewport height */
+    min-height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,11 +16,10 @@
     padding: 20px;
     animation: fadeIn 1s ease-in-out;
     font-family: 'Poppins', sans-serif;
-    background: transparent; /* Fallback color */
+    background: transparent;
     overflow: hidden;
   }
   
-  /* Header Section */
   .profile-header {
     position: relative;
     display: flex;
@@ -29,7 +27,7 @@
     align-items: center;
     text-align: center;
     padding: 20px;
-    background: var(--secondary-color, #ffffff); /* Fallback color */
+    background: var(--secondary-color, #ffffff);
     border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.186);
     width: 100%;
@@ -108,15 +106,14 @@
     transform: translateY(-2px);
   }
   
-  /* Profile Details Section */
   .profile-details {
     margin-top: 20px;
     display: grid;
-    grid-template-columns: repeat(1, 1fr); /* Single column for mobile */
+    grid-template-columns: repeat(1, 1fr);
     gap: 20px;
     width: 100%;
     max-width: 800px;
-    background: var(--secondary-color, #ffffff); /* Fallback color */
+    background: var(--secondary-color, #ffffff);
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.186);
@@ -149,7 +146,6 @@
     box-shadow: 0 0 8px rgba(74, 144, 226, 0.3);
   }
   
-  /* Logout Button */
   .logout-button {
     background: #ff4d4d;
     color: white;
@@ -170,7 +166,6 @@
     transform: translateY(-2px);
   }
   
-  /* Edit Overlay */
   .edit-overlay {
     position: fixed;
     top: 0;
@@ -220,7 +215,6 @@
     transform: translateY(-2px);
   }
   
-  /* Media Queries for Responsiveness */
   @media (min-width: 600px) {
     .profile-header {
       flex-direction: row;
@@ -233,7 +227,7 @@
     }
   
     .profile-details {
-      grid-template-columns: repeat(2, 1fr); /* Two columns for tablets and desktops */
+      grid-template-columns: repeat(2, 1fr);
     }
   }
   

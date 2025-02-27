@@ -5,14 +5,14 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
-  const [isLoading, setIsLoading] = useState(true); // New loading state
+  const [isLoading, setIsLoading] = useState(true);
 
   const login = (userData, token) => {
     setUser(userData);
     setToken(token);
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(userData));
-    localStorage.setItem('loginTime', Date.now()); // Store login time
+    localStorage.setItem('loginTime', Date.now());
   };
 
   const logout = () => {
@@ -36,10 +36,10 @@ export const AuthProvider = ({ children }) => {
         setUser(JSON.parse(storedUser));
         setToken(storedToken);
       } else {
-        logout(); // Session expired
+        logout();
       }
     }
-    setIsLoading(false); // Set loading to false after checking
+    setIsLoading(false);
   }, []);
 
   return (

@@ -17,7 +17,6 @@ const Profile = () => {
   const { user, token, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // Fetch profile data on mount
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -55,7 +54,7 @@ const Profile = () => {
 
   const handleLogout = () => {
     logout();
-    navigate('/'); // Redirect to login page after logout
+    navigate('/');
   };
 
   const handleInputChange = (e) => {

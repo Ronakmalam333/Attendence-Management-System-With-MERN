@@ -7,9 +7,7 @@ function Feedback() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
     alert('Thank you for your feedback! 🌟');
-    // Reset form
     setRating(0);
     setComment('');
   };

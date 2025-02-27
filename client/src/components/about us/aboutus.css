@@ -100,7 +100,6 @@
   font-size: 0.95rem;
 }
 
-/* Team Section */
 .team-grid {
   display: flex;
   justify-content: center;
@@ -142,7 +141,6 @@
   font-size: 0.9rem;
 }
 
-/* Contact Section */
 .contact-section {
   text-align: center;
   background: var(--secondary-color);
@@ -166,7 +164,6 @@
   gap: 0.5rem;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .about-us-container {
     padding: 1.5rem 5%;

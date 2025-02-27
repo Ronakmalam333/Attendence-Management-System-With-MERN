@@ -4,14 +4,11 @@ import './Help.css';
 const Help = () => {
   return (
     <div className='help-container'>
-      {/* Page Title */}
       <div className='support-title'>
         <h1>Help & Support</h1>
       </div>
 
-      {/* Main Content */}
       <div className='help-content'>
-        {/* Frequently Asked Questions (FAQ) Section */}
         <div className='faq-section'>
           <h2>Frequently Asked Questions</h2>
           <ul>
@@ -30,7 +27,6 @@ const Help = () => {
           </ul>
         </div>
 
-        {/* Contact Support Section */}
         <div className='contact-section'>
           <h2>Contact Support</h2>
           <p>If you need further assistance, feel free to contact us:</p>

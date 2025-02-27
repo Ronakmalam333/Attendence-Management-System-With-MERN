@@ -71,8 +71,6 @@ form .back-btn svg {
     fill: var(--color);
 }
 
-/*! input area  */
-
 .input-area {
     width: 100%;
     height: auto;
@@ -139,7 +137,6 @@ form .back-btn svg {
     transition: 1s;
 }
 
-/* Hover effect on the input field */
 .input:hover .label {
     top: 0;
     font-size: 14px;
@@ -151,7 +148,6 @@ form .back-btn svg {
     box-shadow: inset 400px 0px 0 0 blue;
 }
 
-/* Focus effect to keep the label at the top */
 .input input:focus+.bottom-border {
     transition: 1s;
     box-shadow: inset 400px 0px 0 0 blue;
@@ -163,7 +159,6 @@ form .back-btn svg {
     opacity: 0.5;
 }
 
-/* Disable hover effect when input has value or is focused */
 .input.focused .label,
 .input.focused:hover .label {
     top: 0;
@@ -258,7 +253,6 @@ form .back-btn svg {
 }
 
 
-/*! Extra Small Devices (Portrait Phones) */
 @media only screen and (max-width: 575px) {
 
     .signin-contain {
@@ -295,7 +289,6 @@ form .back-btn svg {
 
 }
 
-/*! Small devices (phones, 576px and up) */
 @media (min-width: 575px) and (max-width: 768px) {
 
     .signin-contain {
@@ -330,7 +323,6 @@ form .back-btn svg {
 
 }
 
-/*! Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) and (max-width: 992px) {
 
     .signin-contain {
@@ -361,7 +353,6 @@ form .back-btn svg {
 
 }
 
-/*! Large devices (desktops, 992px and up) */
 @media (min-width: 992px) and (max-width: 1200px) {
 
     .signin-contain form {
