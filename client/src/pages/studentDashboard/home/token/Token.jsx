@@ -110,7 +110,7 @@ function Token() {
         <button
           className="submit_btn"
           type="submit"
-          disabled={onTimeSub === "No Classes Found"} // Only change made
+          disabled={onTimeSub === "No Classes Found"} 
         >
           Submit
         </button>

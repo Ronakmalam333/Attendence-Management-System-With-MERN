@@ -36,7 +36,7 @@ function LiveAttendence({ course, semester }) {
   const hours = date.getHours();
   const minutes = date.getMinutes();
   const time = `${hours}.${minutes}`;
-  // const time = `13`;
+
 
   console.log(time);
   
@@ -82,7 +82,7 @@ function LiveAttendence({ course, semester }) {
       const interval = setInterval(fetchStudents, 5000);
       return () => clearInterval(interval);
     } else {
-      setStudents([]); // Clear students if conditions not met
+      setStudents([]); 
     }
   }, [token, course, semester, onTimeSub]);
 
@@ -122,7 +122,7 @@ function LiveAttendence({ course, semester }) {
                         student.status === 'P'
                           ? "rgba(53, 225, 0, 0.673)"
                           : student.status === 'pending'
-                            ? "rgba(255, 255, 0, 0.5)" // Yellow for pending
+                            ? "rgba(255, 255, 0, 0.5)" 
                             : "rgba(255, 11, 11, 0.836)"
                       }`
                     }}

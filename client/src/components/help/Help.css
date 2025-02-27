@@ -1,6 +1,4 @@
-/* Help.css */
 
-/* Container */
 .help-container {
     width: 100%;
     height: 90%;
@@ -12,7 +10,6 @@
     scrollbar-width: none;
   }
   
-  /* Fade-in Animation */
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -24,7 +21,6 @@
     }
   }
   
-  /* Title Styling */
   .support-title h1 {
     font-size: 2.5rem;
     color: var(--color2);
@@ -35,12 +31,10 @@
     transition: color 0.3s ease;
   }
   
-  /* Content Styling */
   .help-content {
     margin-top: 20px;
   }
   
-  /* FAQ Section */
   .faq-section h2 {
     font-size: 1.75rem;
     color: var(--color);
@@ -83,7 +77,6 @@
     color: var(--color);
   }
   
-  /* Contact Section */
   .contact-section {
     margin-top: 40px;
     padding: 20px;
@@ -132,7 +125,6 @@
     background-color: #002aa8;
   }
   
-  /* Responsive Design */
   @media (max-width: 768px) {
     .help-container {
       padding: 20px;

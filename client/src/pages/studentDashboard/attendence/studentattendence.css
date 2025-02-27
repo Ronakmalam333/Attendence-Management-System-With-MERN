@@ -38,7 +38,6 @@
     background-color: #ddd;
 }
 
-/* Responsive styles */
 @media only screen and (max-width: 768px) {
     .student-attendence {
         padding: 10px;

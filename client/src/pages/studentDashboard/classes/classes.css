@@ -15,7 +15,6 @@
     perspective: 1000px;
 }
 
-/* Dynamic Floating Particles Background */
 .classes-contain::before {
     content: '';
     position: absolute;
@@ -130,7 +129,6 @@
     background: rgba(248, 249, 250, 0.85);
 }
 
-/* 3D Parallax Scroll Effect */
 .classes-contain {
     scroll-behavior: smooth;
     scrollbar-width: thin;
@@ -143,7 +141,6 @@
     border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
-/* Dynamic Responsive Layout */
 @media (max-width: 768px) {
     .classes-contain {
         padding: 1rem;
@@ -172,7 +169,6 @@
     }
 }
 
-/* Hover Physics Enhancement */
 @media (hover: hover) {
     .classes-contain tr {
         transition: 
@@ -181,7 +177,6 @@
     }
 }
 
-/* Ambient Light Effect */
 .classes-contain::after {
     content: '';
     position: absolute;

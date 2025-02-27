@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const server = express();
-const SECRET_KEY = 'mysecretkey'; // Replace with secure key in production
+const SECRET_KEY = 'mysecretkey'; 
 
 server.use(cors());
 server.use(express.json());
@@ -22,7 +22,7 @@ const mongoDb = async () => {
 
 mongoDb();
 
-// Token Verification Middleware
+
 const verifyToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
@@ -39,7 +39,7 @@ const verifyToken = (req, res, next) => {
   }
 };
 
-// Registration Endpoints (unchanged for brevity)
+
 server.post('/student', async (req, res) => {
   const { firstname, lastname, email, uid, password, role, course, semester } = req.body;
   try {
@@ -64,7 +64,7 @@ server.post('/admin', async (req, res) => {
   }
 });
 
-// Login Endpoint (unchanged for brevity)
+
 server.post('/login', async (req, res) => {
   const { identifier, password, role } = req.body;
   let userModel = role === 'student' ? Student : Admin;
@@ -79,7 +79,7 @@ server.post('/login', async (req, res) => {
   }
 });
 
-// Attendance Endpoints
+
 server.post('/attendance', verifyToken, async (req, res) => {
   const { studentId, subject, date, present } = req.body;
   try {

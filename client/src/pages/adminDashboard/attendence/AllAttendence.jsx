@@ -48,7 +48,6 @@ const EditableTable = ({ data, onDataUpdate }) => {
   );
 };
 
-// Subcomponent: Attendance Chart
 const AttendanceChart = ({ data }) => {
   const chartData = useMemo(() => {
     const summary = data.reduce((acc, row) => {
@@ -92,7 +91,6 @@ const AttendanceChart = ({ data }) => {
   );
 };
 
-// Main Component
 const AllAttendence = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);

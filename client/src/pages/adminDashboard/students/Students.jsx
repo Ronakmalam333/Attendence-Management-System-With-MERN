@@ -3,7 +3,6 @@ import React from 'react'
 import './students.css'
 
 function Students() {
-  // Mock student data
   const students = [
     { id: 1, name: 'Ronak Malam', email: '24BTCSE025@raiuniversity.edu', status: 'Active' },
     { id: 2, name: 'Anmol Sinha', email: '24BTCSE107@raiuniversity.edu', status: 'Active' },

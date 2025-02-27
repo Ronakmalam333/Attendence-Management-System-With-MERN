@@ -75,7 +75,6 @@
     background: #222222c2;
 }
 
-/*! Extra Small Devices (Portrait Phones) */
 @media only screen and (max-width: 575px) {
     .token_contain {
         width: 100%;
