@@ -46,8 +46,8 @@ function Token() {
   const hours = date.getHours();
   const minutes = date.getMinutes();
   
-  // const time = `${hours}.${minutes}`;
-  const time = `13`;
+  const time = `${hours}.${minutes}`;
+  // const time = `13`;
 
   let onTimeSub = "No Classes Found";
 

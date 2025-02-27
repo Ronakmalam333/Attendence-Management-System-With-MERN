@@ -117,8 +117,8 @@ function AdminDashboard() {
   // Convert current time to decimal format (hours + minutes/60)
   const hours = date.getHours();
   const minutes = date.getMinutes();
-  // const currentTime = hours + minutes / 60;
-  const currentTime = 13;
+  const currentTime = hours + minutes / 60;
+  // const currentTime = 13;
 
   // Determine the current subject based on time slots
   let onTimeSub = "No Classes Found";
