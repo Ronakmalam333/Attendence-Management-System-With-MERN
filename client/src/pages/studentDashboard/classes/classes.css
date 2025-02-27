@@ -1,7 +1,203 @@
+.classes-contain {
+    width: 100vw;
+    height: 100vh;
+    padding: 2rem;
+    background: linear-gradient(
+        135deg,
+        hsl(210, 20%, 98%) 0%,
+        hsl(220, 15%, 92%) 100%
+    );
+    display: grid;
+    grid-template-rows: min-content 1fr;
+    gap: 2rem;
+    overflow: hidden;
+    position: relative;
+    perspective: 1000px;
+}
 
-.classes-contain{
+/* Dynamic Floating Particles Background */
+.classes-contain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+        radial-gradient(circle at 10% 20%, hsl(204, 80%, 80%, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, hsl(283, 60%, 80%, 0.1) 0%, transparent 50%);
+    animation: particleFlow 20s linear infinite;
+}
+
+@keyframes particleFlow {
+    0% { background-position: 0% 0%, 100% 100%; }
+    100% { background-position: 100% 100%, 0% 0%; }
+}
+
+.classes-contain h1 {
+    font-size: 2.75rem;
+    margin: 0;
+    padding: 1rem;
+    font-weight: 800;
+    text-align: center;
+    background: linear-gradient(45deg, #2d3436 30%, #0984e3 70%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    z-index: 2;
+    transform-style: preserve-3d;
+    text-shadow: 
+        0 2px 10px rgba(0, 0, 0, 0.05),
+        0 4px 20px rgba(9, 132, 227, 0.1);
+    animation: titleFloat 4s ease-in-out infinite;
+}
+
+@keyframes titleFloat {
+    0%, 100% { transform: translateY(0) rotateX(0deg); }
+    50% { transform: translateY(-8px) rotateX(5deg); }
+}
+
+.classes-contain table {
     width: 100%;
-    height: 90%;
-    padding: 20px;
-    animation: fadeIn 1s ease-in-out;
+    height: 100%;
+    border-collapse: separate;
+    border-spacing: 0 0.5rem;
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+    position: relative;
+    z-index: 2;
+    transform-style: preserve-3d;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.05),
+        0 0 40px rgba(116, 185, 255, 0.1);
+    overflow: hidden;
+}
+
+.classes-contain th {
+    background: linear-gradient(135deg, hsl(204, 100%, 75%, 0.95) 0%, hsl(204, 100%, 55%, 0.95) 100%);
+    color: white;
+    padding: 1.5rem;
+    font-weight: 700;
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(8px);
+    border-bottom: 2px solid hsl(204, 100%, 65%);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.classes-contain th:hover {
+    background: linear-gradient(135deg, hsl(204, 100%, 80%, 0.95) 0%, hsl(204, 100%, 60%, 0.95) 100%);
+    transform: translateY(-1px);
+}
+
+.classes-contain td {
+    padding: 1.5rem;
+    color: hsl(210, 12%, 20%);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(255, 255, 255, 0.85);
+    border-bottom: 1px solid rgba(116, 185, 255, 0.1);
+    position: relative;
+}
+
+.classes-contain td::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 95%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(116, 185, 255, 0.2) 50%, transparent 100%);
+    transform: translateX(-50%);
+}
+
+.classes-contain tr {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: left center;
+}
+
+.classes-contain tr:hover {
+    transform: 
+        translateX(12px)
+        perspective(1000px)
+        rotateY(3deg);
+    box-shadow: 
+        0 6px 20px rgba(0, 0, 0, 0.08),
+        0 0 30px rgba(116, 185, 255, 0.1);
+    background: rgba(255, 255, 255, 0.95);
+    z-index: 3;
+}
+
+.classes-contain tr:nth-child(even) {
+    background: rgba(248, 249, 250, 0.85);
+}
+
+/* 3D Parallax Scroll Effect */
+.classes-contain {
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: #74b9ff rgba(0, 0, 0, 0.05);
+}
+
+.classes-contain::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #74b9ff, #0984e3);
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Dynamic Responsive Layout */
+@media (max-width: 768px) {
+    .classes-contain {
+        padding: 1rem;
+        grid-template-rows: min-content 1fr;
+    }
+    
+    .classes-contain h1 {
+        font-size: 2rem;
+        padding: 0.75rem;
+    }
+    
+    .classes-contain th,
+    .classes-contain td {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .classes-contain tr:hover {
+        transform: translateX(6px);
+    }
+    
+    .classes-contain table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Hover Physics Enhancement */
+@media (hover: hover) {
+    .classes-contain tr {
+        transition: 
+            transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+            box-shadow 0.3s ease;
+    }
+}
+
+/* Ambient Light Effect */
+.classes-contain::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at var(--x) var(--y), 
+        rgba(116, 185, 255, 0.1) 0%,
+        transparent 30%);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.classes-contain:hover::after {
+    opacity: 1;
 }

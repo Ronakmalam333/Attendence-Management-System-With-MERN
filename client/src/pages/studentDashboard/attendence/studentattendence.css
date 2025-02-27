@@ -1,7 +1,51 @@
 
 .student-attendence {
-  width: 100%;
-  height: 90%;
-  padding: 20px;
-  animation: fadeIn 1s ease-in-out;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    animation: fadeIn 1s ease-in-out;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.student-attendence h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.student-attendence table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.student-attendence th, .student-attendence td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.student-attendence th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.student-attendence tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.student-attendence tr:hover {
+    background-color: #ddd;
+}
+
+/* Responsive styles */
+@media only screen and (max-width: 768px) {
+    .student-attendence {
+        padding: 10px;
+    }
+    
+    .student-attendence th, 
+    .student-attendence td {
+        padding: 8px;
+    }
 }

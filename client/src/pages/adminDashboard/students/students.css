@@ -1,7 +1,219 @@
+.students-contain {
+    width: 100vw;
+    height: 100vh;
+    padding: 2rem;
+    background: linear-gradient(135deg, hsl(210, 20%, 98%) 0%, hsl(220, 15%, 92%) 100%);
+    display: grid;
+    grid-template-rows: min-content 1fr;
+    gap: 2rem;
+    overflow: hidden;
+    position: relative;
+    perspective: 1000px;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
 
-.students-contain{
+/* Matching Floating Particles Background */
+.students-contain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+        radial-gradient(circle at 10% 20%, hsl(204, 80%, 80%, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, hsl(283, 60%, 80%, 0.1) 0%, transparent 50%);
+    animation: particleFlow 20s linear infinite;
+}
+
+.students-contain h1 {
+    font-size: 2.75rem;
+    margin: 0;
+    padding: 1rem;
+    font-weight: 800;
+    text-align: center;
+    background: linear-gradient(45deg, #2d3436 30%, #0984e3 70%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    z-index: 2;
+    transform-style: preserve-3d;
+    text-shadow: 
+        0 2px 10px rgba(0, 0, 0, 0.05),
+        0 4px 20px rgba(9, 132, 227, 0.1);
+    animation: titleFloat 4s ease-in-out infinite;
+}
+
+.students-contain table {
     width: 100%;
-    height: 90%;
-    padding: 20px;
-    animation: fadeIn 1s ease-in-out;
+    height: 100%;
+    border-collapse: separate;
+    border-spacing: 0 0.5rem;
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+    position: relative;
+    z-index: 2;
+    transform-style: preserve-3d;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.05),
+        0 0 40px rgba(116, 185, 255, 0.1);
+    overflow: hidden;
+}
+
+.students-contain th {
+    background: linear-gradient(135deg, hsl(204, 100%, 75%, 0.95) 0%, hsl(204, 100%, 55%, 0.95) 100%);
+    color: white;
+    padding: 1.5rem;
+    font-weight: 700;
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(8px);
+    border-bottom: 2px solid hsl(204, 100%, 65%);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.students-contain th:hover {
+    background: linear-gradient(135deg, hsl(204, 100%, 80%, 0.95) 0%, hsl(204, 100%, 60%, 0.95) 100%);
+    transform: translateY(-1px);
+}
+
+.students-contain td {
+    padding: 1.5rem;
+    color: hsl(210, 12%, 20%);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(255, 255, 255, 0.85);
+    border-bottom: 1px solid rgba(116, 185, 255, 0.1);
+    position: relative;
+}
+
+.students-contain td::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 95%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(116, 185, 255, 0.2) 50%, transparent 100%);
+    transform: translateX(-50%);
+}
+
+.students-contain tr {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: left center;
+}
+
+.students-contain tr:hover {
+    transform: 
+        translateX(12px)
+        perspective(1000px)
+        rotateY(3deg);
+    box-shadow: 
+        0 6px 20px rgba(0, 0, 0, 0.08),
+        0 0 30px rgba(116, 185, 255, 0.1);
+    background: rgba(255, 255, 255, 0.95);
+    z-index: 3;
+}
+
+.students-contain tr:nth-child(even) {
+    background: rgba(248, 249, 250, 0.85);
+}
+
+/* Status Badge Enhancement */
+.students-contain td:last-child {
+    position: relative;
+    padding-left: 2.5rem;
+}
+
+.students-contain td:last-child::before {
+    content: '';
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #0984e3;
+    box-shadow: 0 0 8px rgba(9, 132, 227, 0.3);
+}
+
+.students-contain td:last-child[data-status="Inactive"]::before {
+    background: #ff4757;
+    box-shadow: 0 0 8px rgba(255, 71, 87, 0.3);
+}
+
+/* Matching Scrollbar Styles */
+.students-contain::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.students-contain::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+}
+
+.students-contain::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #74b9ff, #0984e3);
+    border-radius: 4px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .students-contain {
+        padding: 1rem;
+        grid-template-rows: min-content 1fr;
+    }
+    
+    .students-contain h1 {
+        font-size: 2rem;
+        padding: 0.75rem;
+    }
+    
+    .students-contain th,
+    .students-contain td {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .students-contain tr:hover {
+        transform: translateX(6px);
+    }
+    
+    .students-contain table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Matching Ambient Light Effect */
+.students-contain::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at var(--x) var(--y), 
+        rgba(116, 185, 255, 0.1) 0%,
+        transparent 30%);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.students-contain:hover::after {
+    opacity: 1;
+}
+
+@keyframes particleFlow {
+    0% { background-position: 0% 0%, 100% 100%; }
+    100% { background-position: 100% 100%, 0% 0%; }
+}
+
+@keyframes titleFloat {
+    0%, 100% { transform: translateY(0) rotateX(0deg); }
+    50% { transform: translateY(-8px) rotateX(5deg); }
 }
